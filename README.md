@@ -1,68 +1,27 @@
 # emma Documentation
 
-emma documentation - Powered by [Mintlify](https://mintlify.com)
+Official documentation for [emma](https://app.emma.ai) - AI-powered assistant for teams.
 
-## Development
+**Live site:** [docs.duzzle.dev](https://docs.duzzle.dev)
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the documentation changes locally.
+## About emma
 
-```bash
-npm i -g mintlify
-```
+emma is an AI assistant that integrates with your team's tools like Slack, GitHub, Notion, and more to help automate workflows and boost productivity.
 
-Run the following command at the root of your documentation (where `docs.json` is):
+## Documentation
 
-```bash
-mintlify dev
-```
+- **Getting Started** - Introduction and quickstart guide
+- **Guides** - Best practices and troubleshooting
+- **Integrations** - Connect emma to Slack, GitHub, and other tools
+- **API Reference** - API documentation for developers
 
-## Publishing Changes
+## Links
 
-Changes will be deployed automatically when pushed to the main branch.
+- [emma App](https://app.emma.ai)
+- [Documentation](https://docs.duzzle.dev)
+- [GitHub](https://github.com/Duzzle-development/emma-docs)
+- [X (Twitter)](https://x.com/Duzzle_ai)
 
-## Project Structure
+## Support
 
-```
-emma-docs/
-├── docs.json              # Site configuration
-├── llms.txt               # LLM-friendly documentation index
-├── introduction.mdx       # Home page
-├── quickstart.mdx         # Quickstart guide
-├── changelog.mdx          # Release notes
-├── guides/                # User guides
-│   ├── overview.mdx
-│   ├── best-practices.mdx
-│   └── troubleshooting.mdx
-├── integrations/          # Integration guides
-│   ├── overview.mdx
-│   └── slack.mdx
-├── api-reference/         # API documentation
-│   ├── overview.mdx
-│   └── authentication.mdx
-└── images/                # Static assets
-```
-
-## Key Features
-
-- **llms.txt**: LLM-friendly index for AI assistants to discover documentation
-- **Tabs**: Documentation and API Reference tabs for easy navigation
-- **Search**: Built-in search functionality
-- **Feedback**: Thumbs up/down rating on pages
-- **Components**: Cards, Steps, Tabs, Accordions, and more
-
-## Adding New Pages
-
-1. Create a new `.mdx` file in the appropriate directory
-2. Add frontmatter with `title` and `description`
-3. Add the page path to `docs.json` navigation
-4. Update `llms.txt` with the new page
-
-## Mintlify Components
-
-This documentation uses various Mintlify components:
-
-- `<CardGroup>` / `<Card>` - Feature cards
-- `<Steps>` / `<Step>` - Step-by-step guides
-- `<Tabs>` / `<Tab>` - Tabbed content
-- `<AccordionGroup>` / `<Accordion>` - Collapsible sections
-- `<Note>` / `<Warning>` - Callout boxes
+For questions or feedback, contact us at [support@duzzle.dev](mailto:support@duzzle.dev)
