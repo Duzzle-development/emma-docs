@@ -15,7 +15,7 @@
   "navbar": {
     "primary": {
       "type": "button",
-      "label": "Get Started",
+      "label": "emma",
       "href": "https://app.emma.ai"
     }
   },
