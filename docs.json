@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "emma Documentation",
   "colors": {
-    "primary": "#0066cc",
-    "light": "#4d94ff",
-    "dark": "#004499"
+    "primary": "#10b981",
+    "light": "#34d399",
+    "dark": "#1a1a1a"
   },
   "logo": {
     "light": "/images/logo-light.svg",
