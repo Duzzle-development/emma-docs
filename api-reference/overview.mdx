@@ -1,0 +1,125 @@
+---
+title: API Overview
+description: Learn how to interact with Emma programmatically
+---
+
+# API Reference
+
+Build powerful integrations with the Emma API.
+
+## Base URL
+
+```
+https://api.emma.ai/v1
+```
+
+## Authentication
+
+All API requests require authentication using an API key.
+
+```bash
+curl -X GET "https://api.emma.ai/v1/status" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+<Note>
+Get your API key from the [Emma Dashboard](https://app.emma.ai/settings/api).
+</Note>
+
+## Quick Start
+
+<Steps>
+  <Step title="Get your API key">
+    Navigate to Settings > API in the Emma dashboard.
+  </Step>
+  <Step title="Make your first request">
+    Test the connection with a simple status check.
+  </Step>
+  <Step title="Explore endpoints">
+    Browse the available endpoints below.
+  </Step>
+</Steps>
+
+## Available Endpoints
+
+<CardGroup cols={2}>
+  <Card title="Sessions" icon="message">
+    Create and manage conversation sessions.
+  </Card>
+  <Card title="Messages" icon="paper-plane">
+    Send messages and receive responses.
+  </Card>
+  <Card title="Knowledge" icon="brain">
+    Manage your knowledge base.
+  </Card>
+  <Card title="Webhooks" icon="webhook">
+    Set up event notifications.
+  </Card>
+</CardGroup>
+
+## Rate Limits
+
+| Plan | Requests per minute |
+|------|---------------------|
+| Free | 10 |
+| Pro | 100 |
+| Enterprise | Custom |
+
+## Response Format
+
+All responses are returned in JSON format:
+
+```json
+{
+  "success": true,
+  "data": {
+    // Response data
+  },
+  "meta": {
+    "request_id": "req_abc123"
+  }
+}
+```
+
+## Error Handling
+
+Errors follow a consistent format:
+
+```json
+{
+  "success": false,
+  "error": {
+    "code": "invalid_request",
+    "message": "Description of the error"
+  }
+}
+```
+
+| Status Code | Description |
+|-------------|-------------|
+| 400 | Bad Request |
+| 401 | Unauthorized |
+| 403 | Forbidden |
+| 404 | Not Found |
+| 429 | Rate Limited |
+| 500 | Internal Server Error |
+
+## SDKs
+
+<CardGroup cols={3}>
+  <Card title="Python" icon="python">
+    ```bash
+    pip install emma-sdk
+    ```
+  </Card>
+  <Card title="Node.js" icon="node-js">
+    ```bash
+    npm install @emma/sdk
+    ```
+  </Card>
+  <Card title="Go" icon="golang">
+    ```bash
+    go get emma.ai/sdk
+    ```
+  </Card>
+</CardGroup>

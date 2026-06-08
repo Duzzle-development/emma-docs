@@ -1,0 +1,53 @@
+---
+title: クイックスタート
+description: 数分で Emma を使い始めましょう
+---
+
+# クイックスタート
+
+以下の手順に従って Emma を始めましょう。
+
+## 前提条件
+
+始める前に、以下を確認してください：
+
+- Node.js 18 以上
+- npm または yarn
+
+## インストール
+
+<Steps>
+  <Step title="パッケージをインストール">
+    ```bash
+    npm install emma
+    ```
+  </Step>
+  <Step title="プロジェクトを初期化">
+    ```bash
+    npx emma init
+    ```
+  </Step>
+  <Step title="Emma を使い始める">
+    ```javascript
+    import { emma } from 'emma';
+
+    const result = emma.run();
+    console.log(result);
+    ```
+  </Step>
+</Steps>
+
+## 設定
+
+プロジェクトルートに設定ファイルを作成します：
+
+```json
+{
+  "name": "my-project",
+  "version": "1.0.0"
+}
+```
+
+## 次のステップ
+
+セットアップが完了したら、[ガイド](/ja/guides/overview) でより詳しい情報をご覧ください。

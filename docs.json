@@ -1,0 +1,111 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Emma Documentation",
+  "colors": {
+    "primary": "#0066cc",
+    "light": "#4d94ff",
+    "dark": "#004499"
+  },
+  "logo": {
+    "light": "/images/logo-light.png",
+    "dark": "/images/logo-dark.png"
+  },
+  "favicon": "/images/favicon.png",
+  "topbarLinks": [
+    {
+      "name": "Support",
+      "url": "mailto:support@emma.ai"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Get Started",
+    "url": "https://app.emma.ai"
+  },
+  "tabs": [
+    {
+      "name": "Documentation",
+      "url": "/"
+    },
+    {
+      "name": "API Reference",
+      "url": "/api-reference"
+    }
+  ],
+  "navigation": {
+    "languages": [
+      {
+        "language": "en",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": ["introduction", "quickstart"]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              "guides/overview",
+              "guides/best-practices",
+              "guides/troubleshooting"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "integrations/overview",
+              "integrations/slack"
+            ]
+          },
+          {
+            "group": "Release Notes",
+            "pages": ["changelog"]
+          }
+        ]
+      },
+      {
+        "language": "jp",
+        "groups": [
+          {
+            "group": "はじめに",
+            "pages": ["ja/introduction", "ja/quickstart"]
+          },
+          {
+            "group": "ガイド",
+            "pages": [
+              "ja/guides/overview",
+              "ja/guides/best-practices",
+              "ja/guides/troubleshooting"
+            ]
+          },
+          {
+            "group": "インテグレーション",
+            "pages": [
+              "ja/integrations/overview",
+              "ja/integrations/slack"
+            ]
+          },
+          {
+            "group": "リリースノート",
+            "pages": ["ja/changelog"]
+          }
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/Duzzle_ai",
+      "github": "https://github.com/Duzzle-development/emma-docs",
+      "discord": "https://discord.gg/"
+    }
+  },
+  "feedback": {
+    "thumbsRating": true
+  },
+  "search": {
+    "prompt": "Search Emma docs..."
+  },
+  "llmsTxt": {
+    "enabled": true
+  }
+}

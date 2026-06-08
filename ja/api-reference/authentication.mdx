@@ -1,0 +1,117 @@
+---
+title: 認証
+description: Emma API での認証方法
+---
+
+# 認証
+
+Emma API へのリクエストを認証する方法を学びましょう。
+
+## API キー
+
+すべての API リクエストには Authorization ヘッダーに API キーを含める必要があります。
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+## API キーの取得
+
+<Steps>
+  <Step title="Emma にサインイン">
+    [app.emma.ai](https://app.emma.ai) にアクセスしてアカウントにサインインします。
+  </Step>
+  <Step title="設定に移動">
+    プロフィールをクリックして **設定** を選択します。
+  </Step>
+  <Step title="API セクションへ">
+    設定メニューで **API** タブを選択します。
+  </Step>
+  <Step title="キーを生成">
+    **API キーを作成** をクリックして、わかりやすい名前を付けます。
+  </Step>
+</Steps>
+
+<Warning>
+API キーは安全に保管してください！クライアントサイドのコードや公開リポジトリに公開しないでください。
+</Warning>
+
+## リクエスト例
+
+<Tabs>
+  <Tab title="cURL">
+    ```bash
+    curl -X POST "https://api.emma.ai/v1/sessions" \
+      -H "Authorization: Bearer YOUR_API_KEY" \
+      -H "Content-Type: application/json" \
+      -d '{"prompt": "こんにちは、Emma！"}'
+    ```
+  </Tab>
+  <Tab title="Python">
+    ```python
+    import requests
+
+    headers = {
+        "Authorization": "Bearer YOUR_API_KEY",
+        "Content-Type": "application/json"
+    }
+
+    response = requests.post(
+        "https://api.emma.ai/v1/sessions",
+        headers=headers,
+        json={"prompt": "こんにちは、Emma！"}
+    )
+    ```
+  </Tab>
+  <Tab title="JavaScript">
+    ```javascript
+    const response = await fetch("https://api.emma.ai/v1/sessions", {
+      method: "POST",
+      headers: {
+        "Authorization": "Bearer YOUR_API_KEY",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ prompt: "こんにちは、Emma！" })
+    });
+    ```
+  </Tab>
+</Tabs>
+
+## キー管理
+
+### キーのローテーション
+
+セキュリティのため、API キーを定期的にローテーションすることをお勧めします：
+
+1. 新しい API キーを作成
+2. アプリケーションを新しいキーを使用するように更新
+3. 古いキーを取り消し
+
+### キーの取り消し
+
+API キーを取り消すには：
+
+1. **設定 > API** に移動
+2. 取り消したいキーを見つける
+3. **取り消し** をクリック
+
+<Note>
+キーの取り消しは即座に行われ、元に戻すことはできません。取り消す前に、そのキーを使用しているすべてのアプリケーションを更新していることを確認してください。
+</Note>
+
+## セキュリティのベストプラクティス
+
+<CardGroup cols={2}>
+  <Card title="環境変数を使用" icon="lock">
+    API キーはコードではなく環境変数に保存します。
+  </Card>
+  <Card title="権限を制限" icon="shield">
+    必要な権限のみを持つキーを作成します。
+  </Card>
+  <Card title="定期的にローテーション" icon="rotate">
+    定期的に、また潜在的な漏洩後にキーをローテーションします。
+  </Card>
+  <Card title="使用状況を監視" icon="chart-line">
+    異常なアクティビティがないか API 使用ログを確認します。
+  </Card>
+</CardGroup>

@@ -1,0 +1,92 @@
+---
+title: Slack Integration
+description: Use Emma directly in your Slack workspace
+---
+
+# Slack Integration
+
+Chat with Emma directly in Slack to get help without leaving your workflow.
+
+## Getting Started
+
+### Installation
+
+<Steps>
+  <Step title="Go to Settings">
+    Navigate to **Settings > Integrations > Slack** in the Emma dashboard.
+  </Step>
+  <Step title="Click Connect">
+    Click the "Connect to Slack" button.
+  </Step>
+  <Step title="Authorize">
+    Authorize Emma to access your Slack workspace.
+  </Step>
+  <Step title="Start chatting">
+    Mention @Emma in any channel to start a conversation.
+  </Step>
+</Steps>
+
+## How to Use
+
+Once installed, you can interact with Emma in several ways:
+
+### Mention Emma
+
+Tag **@Emma** in any channel or thread to ask a question or request help.
+
+```
+@Emma How do I implement authentication in Node.js?
+```
+
+### Direct Messages
+
+Send a direct message to Emma for private conversations.
+
+### Slash Commands
+
+| Command | Description |
+|---------|-------------|
+| `/emma ask [question]` | Ask Emma a quick question |
+| `/emma help` | Show available commands |
+| `/emma status` | Check Emma's status |
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Be Specific" icon="bullseye">
+    Provide clear, detailed questions for better responses.
+  </Card>
+  <Card title="Use Threads" icon="comments">
+    Keep conversations organized by using threads.
+  </Card>
+</CardGroup>
+
+## Permissions
+
+Emma requires the following Slack permissions:
+
+| Permission | Purpose |
+|------------|---------|
+| `chat:write` | Send messages as Emma |
+| `channels:history` | Read messages in channels where Emma is mentioned |
+| `im:history` | Read direct messages |
+| `users:read` | Identify users for personalized responses |
+
+<Note>
+Emma only accesses messages where it's directly mentioned or in direct message conversations.
+</Note>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Emma isn't responding">
+    - Ensure Emma is invited to the channel
+    - Check that the integration is properly connected
+    - Verify your workspace permissions
+  </Accordion>
+  
+  <Accordion title="Can't find Emma in Slack">
+    - Reinstall the integration from Settings
+    - Contact your Slack workspace admin
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,53 @@
+---
+title: Quickstart
+description: Get up and running with Emma in minutes
+---
+
+# Quickstart
+
+Follow these steps to get started with Emma.
+
+## Prerequisites
+
+Before you begin, make sure you have:
+
+- Node.js 18 or higher
+- npm or yarn
+
+## Installation
+
+<Steps>
+  <Step title="Install the package">
+    ```bash
+    npm install emma
+    ```
+  </Step>
+  <Step title="Initialize your project">
+    ```bash
+    npx emma init
+    ```
+  </Step>
+  <Step title="Start using Emma">
+    ```javascript
+    import { emma } from 'emma';
+
+    const result = emma.run();
+    console.log(result);
+    ```
+  </Step>
+</Steps>
+
+## Configuration
+
+Create a configuration file in your project root:
+
+```json
+{
+  "name": "my-project",
+  "version": "1.0.0"
+}
+```
+
+## Next Steps
+
+Now that you're set up, explore our [Guides](/guides/overview) for more detailed information.

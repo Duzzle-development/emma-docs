@@ -1,0 +1,125 @@
+---
+title: API 概要
+description: Emma とプログラムで対話する方法を学ぶ
+---
+
+# API リファレンス
+
+Emma API で強力なインテグレーションを構築しましょう。
+
+## ベース URL
+
+```
+https://api.emma.ai/v1
+```
+
+## 認証
+
+すべての API リクエストには Authorization ヘッダーに API キーが必要です。
+
+```bash
+curl -X GET "https://api.emma.ai/v1/status" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+<Note>
+API キーは [Emma ダッシュボード](https://app.emma.ai/settings/api) から取得できます。
+</Note>
+
+## クイックスタート
+
+<Steps>
+  <Step title="API キーを取得">
+    Emma ダッシュボードの設定 > API に移動します。
+  </Step>
+  <Step title="最初のリクエストを実行">
+    簡単なステータスチェックで接続をテストします。
+  </Step>
+  <Step title="エンドポイントを探索">
+    以下の利用可能なエンドポイントを参照します。
+  </Step>
+</Steps>
+
+## 利用可能なエンドポイント
+
+<CardGroup cols={2}>
+  <Card title="セッション" icon="message">
+    会話セッションの作成と管理。
+  </Card>
+  <Card title="メッセージ" icon="paper-plane">
+    メッセージの送信と応答の受信。
+  </Card>
+  <Card title="ナレッジ" icon="brain">
+    ナレッジベースの管理。
+  </Card>
+  <Card title="Webhook" icon="webhook">
+    イベント通知の設定。
+  </Card>
+</CardGroup>
+
+## レート制限
+
+| プラン | 1分あたりのリクエスト数 |
+|--------|------------------------|
+| Free | 10 |
+| Pro | 100 |
+| Enterprise | カスタム |
+
+## レスポンス形式
+
+すべてのレスポンスは JSON 形式で返されます：
+
+```json
+{
+  "success": true,
+  "data": {
+    // レスポンスデータ
+  },
+  "meta": {
+    "request_id": "req_abc123"
+  }
+}
+```
+
+## エラーハンドリング
+
+エラーは一貫した形式に従います：
+
+```json
+{
+  "success": false,
+  "error": {
+    "code": "invalid_request",
+    "message": "エラーの説明"
+  }
+}
+```
+
+| ステータスコード | 説明 |
+|-----------------|------|
+| 400 | 不正なリクエスト |
+| 401 | 未認証 |
+| 403 | 禁止 |
+| 404 | 見つかりません |
+| 429 | レート制限 |
+| 500 | 内部サーバーエラー |
+
+## SDK
+
+<CardGroup cols={3}>
+  <Card title="Python" icon="python">
+    ```bash
+    pip install emma-sdk
+    ```
+  </Card>
+  <Card title="Node.js" icon="node-js">
+    ```bash
+    npm install @emma/sdk
+    ```
+  </Card>
+  <Card title="Go" icon="golang">
+    ```bash
+    go get emma.ai/sdk
+    ```
+  </Card>
+</CardGroup>
