@@ -20,7 +20,7 @@ emma is an AI assistant that integrates with your team's tools like Slack, GitHu
 - [emma App](https://app.emma.ai)
 - [Documentation](https://docs.duzzle.dev)
 - [GitHub](https://github.com/Duzzle-development/emma-docs)
-- [X (Twitter)](https://x.com/Duzzle_ai)
+- [X](https://x.com/Duzzle_ai)
 
 ## Support
 
