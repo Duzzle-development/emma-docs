@@ -52,7 +52,8 @@
                 "group": "Integrations",
                 "pages": [
                   "integrations/overview",
-                  "integrations/slack"
+                  "integrations/slack",
+                  "integrations/ethereum"
                 ]
               }
             ]
@@ -102,7 +103,8 @@
                 "group": "インテグレーション",
                 "pages": [
                   "ja/integrations/overview",
-                  "ja/integrations/slack"
+                  "ja/integrations/slack",
+                  "ja/integrations/ethereum"
                 ]
               }
             ]

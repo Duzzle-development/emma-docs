@@ -1,0 +1,480 @@
+---
+title: Ethereum
+description: Query Ethereum blockchain data and interact with smart contracts
+icon: /images/ethereum.svg
+---
+
+# Ethereum
+
+Query Ethereum blockchain data, check balances, track transactions, and interact with smart contracts.
+
+## Getting Started
+
+### Setup
+
+<Steps>
+  <Step title="Go to Settings">
+    Navigate to **Settings > Integrations > Ethereum** in the emma dashboard.
+  </Step>
+  <Step title="Add RPC Endpoint">
+    Enter your Ethereum RPC endpoint URL (e.g., Alchemy, Infura, or your own node).
+  </Step>
+  <Step title="Save Configuration">
+    Click "Save" to connect emma to the Ethereum network.
+  </Step>
+</Steps>
+
+## Available Features
+
+emma provides **57 tools** for comprehensive Ethereum blockchain interaction, organized into 16 categories:
+
+<CardGroup cols={2}>
+  <Card title="Accounts" icon="wallet">
+    Check balances, nonces, and contract code
+  </Card>
+  <Card title="Blocks" icon="cube">
+    Get block information and transaction counts
+  </Card>
+  <Card title="Transactions" icon="arrow-right-arrow-left">
+    Query transaction details and receipts
+  </Card>
+  <Card title="Gas" icon="gas-pump">
+    Get gas prices and estimate transaction costs
+  </Card>
+  <Card title="ENS" icon="at">
+    Resolve ENS names and reverse lookups
+  </Card>
+  <Card title="Tokens" icon="coins">
+    Get ERC20 token balances and metadata
+  </Card>
+  <Card title="Logs & Events" icon="list">
+    Query event logs and filter blockchain events
+  </Card>
+  <Card title="Debug & Trace" icon="bug">
+    Trace transactions and debug smart contracts
+  </Card>
+</CardGroup>
+
+---
+
+## Accounts
+
+### Get Balance
+
+Get the ETH balance of any Ethereum address.
+
+**Example prompts:**
+- "What's the ETH balance of 0x123...?"
+- "Check the balance of vitalik.eth"
+- "How much ETH does this wallet have?"
+
+### Get Transaction Count (Nonce)
+
+Get the number of transactions sent from an address. Required for creating new transactions.
+
+**Example prompts:**
+- "What's the nonce for 0x123...?"
+- "How many transactions has this address sent?"
+
+### Get Code
+
+Check if an address is a smart contract by retrieving its bytecode.
+
+**Example prompts:**
+- "Is 0x123... a smart contract?"
+- "Get the bytecode at this address"
+
+### Call Contract
+
+Execute a read-only smart contract function call.
+
+**Example prompts:**
+- "Call the totalSupply function on this token contract"
+- "What's the balanceOf for this address on the USDT contract?"
+
+---
+
+## Blocks
+
+### Get Block Number
+
+Get the current latest block number on Ethereum.
+
+**Example prompts:**
+- "What's the current Ethereum block number?"
+- "What's the latest block?"
+
+### Get Block by Number
+
+Get detailed block information including timestamp, gas usage, and transactions.
+
+**Example prompts:**
+- "Show me block 19234567"
+- "Get the latest block details"
+- "What transactions are in block 19000000?"
+
+### Get Block by Hash
+
+Get block information using a specific block hash.
+
+**Example prompts:**
+- "Get the block with hash 0xabc..."
+
+### Get Block Transaction Count
+
+Get the number of transactions in a specific block.
+
+**Example prompts:**
+- "How many transactions are in the latest block?"
+- "Transaction count for block 19234567"
+
+---
+
+## Transactions
+
+### Get Transaction
+
+Get transaction details by transaction hash.
+
+**Example prompts:**
+- "Show me transaction 0xabc..."
+- "What are the details of this transaction?"
+- "Who sent this transaction and how much ETH?"
+
+**Information returned:**
+- Sender and recipient addresses
+- Value transferred (in Wei and ETH)
+- Gas price and limit
+- Nonce and status (pending/confirmed)
+
+### Get Transaction Receipt
+
+Get the execution result of a transaction including status, gas used, and event logs.
+
+**Example prompts:**
+- "Did transaction 0xabc... succeed?"
+- "How much gas did this transaction use?"
+- "Show me the logs from this transaction"
+
+**Information returned:**
+- Success/failure status
+- Gas used and transaction fee
+- Contract address (if deployment)
+- Event logs emitted
+
+### Get Transaction by Block
+
+Get a specific transaction from a block by its index position.
+
+**Example prompts:**
+- "Get the first transaction in block 19234567"
+- "Show me transaction at index 5 in the latest block"
+
+---
+
+## Gas
+
+### Get Gas Price
+
+Get the current gas price on the network.
+
+**Example prompts:**
+- "What's the current gas price?"
+- "How much would a simple ETH transfer cost?"
+
+**Information returned:**
+- Gas price in Wei and Gwei
+- Estimated cost for a standard ETH transfer
+
+### Estimate Gas
+
+Estimate the gas required for a specific transaction.
+
+**Example prompts:**
+- "How much gas would this contract call use?"
+- "Estimate gas for sending 1 ETH to 0x123..."
+
+### Get Fee History
+
+Get historical gas fee data for EIP-1559 transactions.
+
+**Example prompts:**
+- "Show me gas prices for the last 10 blocks"
+- "What were the priority fees recently?"
+
+---
+
+## ENS (Ethereum Name Service)
+
+### Resolve ENS Name
+
+Convert an ENS name to its Ethereum address.
+
+**Example prompts:**
+- "What's the address for vitalik.eth?"
+- "Resolve uniswap.eth"
+
+### Reverse Resolve Address
+
+Look up the ENS name associated with an address.
+
+**Example prompts:**
+- "What ENS name does 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 have?"
+- "Does this address have an ENS name?"
+
+### Get ENS Text Record
+
+Get text records from an ENS name (Twitter, GitHub, website, etc.).
+
+**Example prompts:**
+- "What's vitalik.eth's Twitter handle?"
+- "Get the website URL for uniswap.eth"
+
+**Common text record keys:**
+- `url` - Website URL
+- `avatar` - Avatar image
+- `description` - Profile description
+- `com.twitter` - Twitter handle
+- `com.github` - GitHub username
+- `email` - Email address
+
+---
+
+## Tokens (Alchemy)
+
+<Note>
+Token tools require Alchemy as your RPC provider.
+</Note>
+
+### Get Token Balances
+
+Get all ERC20 token balances for an address.
+
+**Example prompts:**
+- "What tokens does 0x123... hold?"
+- "Show me all ERC20 balances for this wallet"
+
+### Get Token Metadata
+
+Get metadata for an ERC20 token (name, symbol, decimals, logo).
+
+**Example prompts:**
+- "What token is at contract 0x123...?"
+- "Get the symbol and decimals for this token"
+
+### Get Asset Transfers
+
+Get historical transfer history including ETH, ERC20, and NFTs.
+
+**Example prompts:**
+- "Show me all transfers to 0x123..."
+- "What tokens has this address received?"
+- "Get the transaction history for this wallet"
+
+**Transfer categories:**
+- `external` - ETH transfers (top-level)
+- `internal` - ETH transfers (internal transactions)
+- `erc20` - ERC20 token transfers
+- `erc721` - ERC721 NFT transfers
+- `erc1155` - ERC1155 multi-token transfers
+
+---
+
+## Logs & Events
+
+### Get Logs
+
+Query event logs with filters for address, topics, and block range.
+
+**Example prompts:**
+- "Get Transfer events from USDT contract in the last 100 blocks"
+- "Show me all events emitted by 0x123..."
+
+### Get Block Receipts
+
+Get all transaction receipts for a block.
+
+**Example prompts:**
+- "Get all receipts from block 19234567"
+
+---
+
+## Filters
+
+### Create Filter
+
+Create a new event filter for monitoring.
+
+**Example prompts:**
+- "Create a filter for Transfer events on USDT"
+
+### Create Block Filter
+
+Create a filter for new blocks.
+
+**Example prompts:**
+- "Monitor for new blocks"
+
+### Get Filter Changes
+
+Get new events since the last poll.
+
+**Example prompts:**
+- "Check for new events on my filter"
+
+### Uninstall Filter
+
+Remove a filter when no longer needed.
+
+---
+
+## Storage & State
+
+### Get Storage At
+
+Read raw storage from a contract at a specific slot.
+
+**Example prompts:**
+- "Read storage slot 0 from contract 0x123..."
+
+### Get Account
+
+Get full account information including balance, nonce, and code hash.
+
+### Check Sync Status
+
+Check if the node is syncing with the network.
+
+**Example prompts:**
+- "Is the Ethereum node synced?"
+
+---
+
+## Debug & Trace
+
+<Note>
+Debug tools require a node with debug APIs enabled (e.g., Geth with `--http.api debug`).
+</Note>
+
+### Trace Transaction
+
+Get a detailed execution trace of a transaction.
+
+**Example prompts:**
+- "Trace transaction 0xabc..."
+- "Show me the internal calls in this transaction"
+
+### Trace Call
+
+Simulate and trace a contract call without sending a transaction.
+
+**Example prompts:**
+- "Trace what would happen if I called this function"
+
+### Trace Block
+
+Get execution traces for all transactions in a block.
+
+---
+
+## Transaction Pool
+
+### Get Txpool Content
+
+View pending and queued transactions in the mempool.
+
+**Example prompts:**
+- "Show me pending transactions"
+- "What's in the transaction pool?"
+
+### Get Txpool Status
+
+Get the number of pending and queued transactions.
+
+### Inspect Txpool
+
+Get a summary of transactions in the pool.
+
+---
+
+## Advanced Features
+
+### Send Raw Transaction
+
+Broadcast a signed transaction to the network.
+
+<Warning>
+This sends a real transaction. Make sure you understand the transaction before broadcasting.
+</Warning>
+
+### Get Proof
+
+Get a Merkle proof for an account's state.
+
+### Create Access List
+
+Generate an EIP-2930 access list for a transaction.
+
+### Simulate Transaction
+
+Simulate a transaction without broadcasting (EIP-7702).
+
+---
+
+## Supported Networks
+
+emma supports any EVM-compatible network through custom RPC endpoints:
+
+| Network | Example RPC |
+|---------|-------------|
+| Ethereum Mainnet | `https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY` |
+| Goerli Testnet | `https://eth-goerli.g.alchemy.com/v2/YOUR_KEY` |
+| Sepolia Testnet | `https://eth-sepolia.g.alchemy.com/v2/YOUR_KEY` |
+| Polygon | `https://polygon-mainnet.g.alchemy.com/v2/YOUR_KEY` |
+| Arbitrum | `https://arb-mainnet.g.alchemy.com/v2/YOUR_KEY` |
+| Optimism | `https://opt-mainnet.g.alchemy.com/v2/YOUR_KEY` |
+
+---
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="RPC endpoint not responding">
+    - Verify your RPC URL is correct
+    - Check if your API key is valid
+    - Ensure you haven't exceeded rate limits
+  </Accordion>
+  
+  <Accordion title="Token tools not working">
+    Token balance and metadata tools require Alchemy as your RPC provider. Standard RPC endpoints don't support these enhanced methods.
+  </Accordion>
+  
+  <Accordion title="Debug tools returning errors">
+    Debug and trace tools require a node with debug APIs enabled. Most public RPC providers don't expose these methods. Consider running your own node or using a provider that supports debug APIs.
+  </Accordion>
+  
+  <Accordion title="ENS resolution failing">
+    - Ensure the ENS name exists and has a resolver set
+    - ENS is only available on Ethereum mainnet
+    - Some names may not have all text records configured
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Use Cases
+
+<CardGroup cols={2}>
+  <Card title="Wallet Monitoring" icon="eye">
+    Track balances, transactions, and token holdings for any address.
+  </Card>
+  <Card title="Smart Contract Analysis" icon="code">
+    Read contract state, trace transactions, and debug issues.
+  </Card>
+  <Card title="DeFi Research" icon="chart-line">
+    Analyze token transfers, liquidity events, and protocol interactions.
+  </Card>
+  <Card title="NFT Tracking" icon="image">
+    Monitor NFT transfers and ownership changes.
+  </Card>
+</CardGroup>
