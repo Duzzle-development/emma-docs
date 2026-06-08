@@ -1,11 +1,12 @@
 ---
-title: Slack Integration
-description: Use emma directly in your Slack workspace
+title: Slack
+description: Connect emma to your Slack workspace for powerful team collaboration
+icon: /images/slack.svg
 ---
 
-# Slack Integration
+# Slack
 
-Chat with emma directly in Slack to get help without leaving your workflow.
+Connect emma to your Slack workspace for powerful team collaboration.
 
 ## Getting Started
 
@@ -21,72 +22,404 @@ Chat with emma directly in Slack to get help without leaving your workflow.
   <Step title="Authorize">
     Authorize emma to access your Slack workspace.
   </Step>
-  <Step title="Start chatting">
-    Mention @emma in any channel to start a conversation.
+  <Step title="Invite emma to channels">
+    Type `/invite @emma` in any channel where you want emma to operate.
   </Step>
 </Steps>
 
-## How to Use
+## Available Features
 
-Once installed, you can interact with emma in several ways:
-
-### Mention emma
-
-Tag **@emma** in any channel or thread to ask a question or request help.
-
-```
-@emma How do I implement authentication in Node.js?
-```
-
-### Direct Messages
-
-Send a direct message to emma for private conversations.
-
-### Slash Commands
-
-| Command | Description |
-|---------|-------------|
-| `/emma ask [question]` | Ask emma a quick question |
-| `/emma help` | Show available commands |
-| `/emma status` | Check emma's status |
-
-## Best Practices
+emma provides **26 tools** for comprehensive Slack integration, organized into 7 categories:
 
 <CardGroup cols={2}>
-  <Card title="Be Specific" icon="bullseye">
-    Provide clear, detailed questions for better responses.
+  <Card title="Messages" icon="message">
+    Search, read, post, reply, update, and delete messages
   </Card>
-  <Card title="Use Threads" icon="comments">
-    Keep conversations organized by using threads.
+  <Card title="Channels" icon="hashtag">
+    List channels, get channel info, and view members
+  </Card>
+  <Card title="Files" icon="file">
+    Upload files, list files, and extract URLs from messages
+  </Card>
+  <Card title="Users" icon="users">
+    List workspace users and get user profile icons
+  </Card>
+  <Card title="Reactions" icon="face-smile">
+    Add, remove, and view emoji reactions on messages
+  </Card>
+  <Card title="Pins" icon="thumbtack">
+    Pin and unpin important messages
+  </Card>
+  <Card title="Scheduled Messages" icon="clock">
+    Schedule messages for future delivery
   </Card>
 </CardGroup>
 
-## Permissions
+---
 
-emma requires the following Slack permissions:
+## Messages
 
-| Permission | Purpose |
-|------------|---------|
-| `chat:write` | Send messages as emma |
-| `channels:history` | Read messages in channels where emma is mentioned |
-| `im:history` | Read direct messages |
-| `users:read` | Identify users for personalized responses |
+### Search Messages
+
+Search through your Slack message history using keywords and advanced filters.
+
+**Example prompts:**
+- "Search Slack for messages about the Q4 budget"
+- "Find messages from @john about the API project"
+- "Search for messages with links shared in #engineering last week"
+
+**Advanced search operators:**
+
+| Operator | Description | Example |
+|----------|-------------|---------|
+| `from:@username` | Messages from a specific user | `from:@john` |
+| `to:@username` | Messages mentioning a user | `to:@mary` |
+| `in:#channel` | Search within a channel | `in:#general` |
+| `after:YYYY-MM-DD` | After a specific date | `after:2024-01-01` |
+| `before:YYYY-MM-DD` | Before a specific date | `before:2024-12-31` |
+| `on:YYYY-MM-DD` | On a specific date | `on:2024-10-25` |
+| `has:link` | Contains a link | - |
+| `has:reaction` | Has emoji reactions | - |
+| `is:pinned` | Pinned messages | - |
 
 <Note>
-emma only accesses messages where it's directly mentioned or in direct message conversations.
+Message search requires OAuth authentication with a User Token. Free Slack plans only allow searching the last 90 days of messages.
 </Note>
+
+### Get Channel History
+
+Retrieve the message history from a specific channel.
+
+**Example prompts:**
+- "Show me the last 50 messages in #general"
+- "Get the conversation history from #engineering for the past week"
+- "What was discussed in #product-updates yesterday?"
+
+### Get Thread Replies
+
+Get all replies in a specific thread to see the full conversation context.
+
+**Example prompts:**
+- "Show me all replies in this thread"
+- "Get the full thread discussion about the deployment"
+
+### Post Message
+
+Send a message to a channel or direct message. Supports Markdown formatting and @mentions.
+
+**Example prompts:**
+- "Post a message to #general saying the deployment is complete"
+- "Send a weekly report summary to #team-updates"
+- "DM @john about the meeting tomorrow"
+
+**Supported formatting:**
+- `*bold*` or `**bold**`
+- `_italic_` or `~strikethrough~`
+- `` `code` `` and ` ```code block``` `
+- `> quote`
+- Lists (numbered and bulleted)
+- @mentions (automatically converted to user IDs)
+
+### Reply to Thread
+
+Reply to an existing thread to keep conversations organized.
+
+**Example prompts:**
+- "Reply to that thread with the updated numbers"
+- "Add a comment to the deployment thread"
+
+### Update Message
+
+Edit a previously posted message to fix typos or update information.
+
+**Example prompts:**
+- "Update my last message to fix the typo"
+- "Edit the announcement to include the new date"
+
+<Warning>
+You can only edit messages that were posted by emma.
+</Warning>
+
+### Delete Message
+
+Permanently delete a message from a channel.
+
+**Example prompts:**
+- "Delete my last message in #general"
+- "Remove the duplicate message I posted"
+
+<Warning>
+This action is irreversible. You can only delete messages posted by emma.
+</Warning>
+
+---
+
+## Channels
+
+### List Channels
+
+Get a list of all available channels in your workspace, including their IDs, member counts, and whether emma has joined them.
+
+**Example prompts:**
+- "Show me all Slack channels"
+- "List the channels emma has access to"
+- "What channels are available in our workspace?"
+
+<Note>
+Always use this tool first before other Slack operations to get the channel ID mapping.
+</Note>
+
+### Get Channel Info
+
+Get detailed information about a specific channel including topic, purpose, creation date, and member count.
+
+**Example prompts:**
+- "Tell me about the #engineering channel"
+- "When was #general created?"
+- "How many members are in #product?"
+
+### Get Channel Members
+
+List all members in a specific channel.
+
+**Example prompts:**
+- "Who is in #engineering?"
+- "List all members of #general"
+- "Check if @john is in #product"
+
+---
+
+## Files
+
+### Get Files from Channel
+
+List files uploaded to a specific channel within a time range.
+
+**Example prompts:**
+- "Show me files shared in #design this month"
+- "List all PDFs uploaded to #documents"
+- "What images were shared in #marketing last week?"
+
+### Get File Info
+
+Get detailed information about a specific file including size, type, and download URL.
+
+**Example prompts:**
+- "Get details about this file"
+- "What's the size of the uploaded presentation?"
+
+### Extract URLs from Messages
+
+Extract all URLs shared in a channel's messages.
+
+**Example prompts:**
+- "Find all links shared in #resources this week"
+- "Extract URLs from #engineering messages"
+- "What websites were shared in #general?"
+
+### Upload File
+
+Upload a file to one or more Slack channels. Supports local files, URLs, and sandbox files.
+
+**Example prompts:**
+- "Upload this report to #team-updates"
+- "Share the presentation in #sales and #marketing"
+- "Post this image to #design with a comment"
+
+**Supported sources:**
+- HTTP/HTTPS URLs (recommended for generated files)
+- Local file paths
+- Sandbox file paths
+
+---
+
+## Users
+
+### List Users
+
+Get a list of all active users in your Slack workspace.
+
+**Example prompts:**
+- "Show me all users in our Slack"
+- "List team members"
+- "Who's in our workspace?"
+
+**Information returned:**
+- User ID
+- Username
+- Display name
+- Real name
+- Email (requires `users:read.email` scope)
+- Admin/Owner status
+- Timezone
+
+### Get User Icon
+
+Get the profile icon URL for a specific user in various sizes.
+
+**Example prompts:**
+- "Get @john's profile picture"
+- "I need the avatar for the user U01234ABCDE"
+
+**Available sizes:** 24x24, 32x32, 48x48, 72x72, 192x192, 512x512 (original)
+
+---
+
+## Reactions
+
+### Add Reaction
+
+Add an emoji reaction to a message.
+
+**Example prompts:**
+- "Add a thumbs up to that message"
+- "React with :white_check_mark: to mark it as done"
+- "Add the :eyes: emoji to show I'm looking into it"
+
+**Common emoji names:**
+
+| Emoji | Name | Use Case |
+|-------|------|----------|
+| 👍 | `thumbsup` | Approval |
+| 👎 | `thumbsdown` | Disapproval |
+| ✅ | `white_check_mark` | Done/Complete |
+| ❌ | `x` | Rejected |
+| 👀 | `eyes` | Looking into it |
+| 🚀 | `rocket` | Launch/Ship |
+| 🎉 | `tada` | Celebration |
+| ❤️ | `heart` | Appreciation |
+| 🔥 | `fire` | Hot/Trending |
+| 💯 | `100` | Perfect |
+
+### Remove Reaction
+
+Remove an emoji reaction from a message.
+
+**Example prompts:**
+- "Remove my thumbs up from that message"
+- "Take off the :eyes: reaction"
+
+### Get Reactions
+
+View all reactions on a specific message.
+
+**Example prompts:**
+- "What reactions are on that announcement?"
+- "How many people gave a thumbs up?"
+- "Show me the feedback on the proposal"
+
+---
+
+## Pins
+
+### Pin Message
+
+Pin an important message to a channel for easy access.
+
+**Example prompts:**
+- "Pin that announcement to #general"
+- "Pin the meeting notes"
+
+### Unpin Message
+
+Remove a pin from a message.
+
+**Example prompts:**
+- "Unpin the old announcement"
+- "Remove the pin from that message"
+
+### List Pinned Messages
+
+View all pinned messages in a channel.
+
+**Example prompts:**
+- "Show me all pinned messages in #engineering"
+- "What's pinned in #general?"
+
+---
+
+## Scheduled Messages
+
+### Schedule Message
+
+Schedule a message to be sent at a specific future time.
+
+**Example prompts:**
+- "Schedule a reminder for tomorrow at 9 AM in #team"
+- "Send a message to #general at 2024-12-25T10:00:00"
+- "Post the weekly update every Monday at 9 AM"
+
+**Time formats:**
+- Unix timestamp: `1704067200`
+- ISO format: `2024-01-01T10:00:00`
+
+<Note>
+Scheduled time must be at least 1 minute in the future and no more than 120 days ahead.
+</Note>
+
+### List Scheduled Messages
+
+View all pending scheduled messages.
+
+**Example prompts:**
+- "Show me all scheduled messages"
+- "What messages are scheduled for #announcements?"
+
+### Delete Scheduled Message
+
+Cancel a scheduled message before it's sent.
+
+**Example prompts:**
+- "Cancel the scheduled message for tomorrow"
+- "Delete the pending announcement"
+
+---
 
 ## Troubleshooting
 
 <AccordionGroup>
-  <Accordion title="emma isn't responding">
-    - Ensure emma is invited to the channel
-    - Check that the integration is properly connected
-    - Verify your workspace permissions
+  <Accordion title="emma can't post to a channel">
+    emma needs to be invited to the channel first. Type `/invite @emma` in the channel to add emma.
   </Accordion>
   
-  <Accordion title="Can't find emma in Slack">
-    - Reinstall the integration from Settings
-    - Contact your Slack workspace admin
+  <Accordion title="Message search isn't working">
+    Message search requires OAuth authentication with a User Token. Make sure you've completed the OAuth flow in Settings > Integrations > Slack.
+  </Accordion>
+  
+  <Accordion title="Can't find a channel">
+    Use the "List Channels" feature first to see all available channels and their IDs. Private channels require emma to be a member.
+  </Accordion>
+  
+  <Accordion title="File upload failed">
+    Check that:
+    - The file size is under 1GB
+    - emma has been invited to the target channel
+    - The file path or URL is accessible
+  </Accordion>
+  
+  <Accordion title="Scheduled message failed">
+    Ensure the scheduled time is:
+    - At least 1 minute in the future
+    - No more than 120 days ahead
+    - In a valid format (Unix timestamp or ISO format)
   </Accordion>
 </AccordionGroup>
+
+---
+
+## Use Cases
+
+<CardGroup cols={2}>
+  <Card title="Daily Standups" icon="sun">
+    Schedule automated standup reminders and collect team updates.
+  </Card>
+  <Card title="Report Distribution" icon="chart-bar">
+    Generate reports and automatically share them to relevant channels.
+  </Card>
+  <Card title="Knowledge Search" icon="magnifying-glass">
+    Search past conversations to find decisions, links, and information.
+  </Card>
+  <Card title="Task Tracking" icon="check">
+    Use reactions to track task completion and gather feedback.
+  </Card>
+</CardGroup>
