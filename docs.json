@@ -12,81 +12,115 @@
     "dark": "/images/logo-dark.svg"
   },
   "favicon": "/images/favicon.png",
-  "topbarLinks": [
-    {
-      "name": "Support",
-      "url": "mailto:support@emma.ai"
+  "navbar": {
+    "links": [
+      { "type": "github", "href": "https://github.com/Duzzle-development/emma-docs" }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Get Started",
+      "href": "https://app.emma.ai"
     }
-  ],
-  "topbarCtaButton": {
-    "name": "Get Started",
-    "url": "https://app.emma.ai"
   },
-  "tabs": [
-    {
-      "name": "Documentation",
-      "url": "/"
-    },
-    {
-      "name": "API Reference",
-      "url": "/api-reference"
-    }
-  ],
   "navigation": {
     "languages": [
       {
         "language": "en",
-        "groups": [
+        "tabs": [
           {
-            "group": "Getting Started",
-            "pages": ["introduction", "quickstart"]
-          },
-          {
-            "group": "Guides",
-            "pages": [
-              "guides/overview",
-              "guides/best-practices",
-              "guides/troubleshooting"
+            "tab": "Documentation",
+            "groups": [
+              {
+                "group": "Getting Started",
+                "pages": ["introduction", "quickstart"]
+              },
+              {
+                "group": "Guides",
+                "pages": [
+                  "guides/overview",
+                  "guides/best-practices",
+                  "guides/troubleshooting"
+                ]
+              },
+              {
+                "group": "Release Notes",
+                "pages": ["changelog"]
+              }
             ]
           },
           {
-            "group": "Integrations",
-            "pages": [
-              "integrations/overview",
-              "integrations/slack"
+            "tab": "Integrations",
+            "groups": [
+              {
+                "group": "Integrations",
+                "pages": [
+                  "integrations/overview",
+                  "integrations/slack"
+                ]
+              }
             ]
           },
           {
-            "group": "Release Notes",
-            "pages": ["changelog"]
+            "tab": "API Reference",
+            "groups": [
+              {
+                "group": "API",
+                "pages": [
+                  "api-reference/overview",
+                  "api-reference/authentication"
+                ]
+              }
+            ]
           }
         ]
       },
       {
         "language": "jp",
-        "groups": [
+        "tabs": [
           {
-            "group": "はじめに",
-            "pages": ["ja/introduction", "ja/quickstart"]
-          },
-          {
-            "group": "ガイド",
-            "pages": [
-              "ja/guides/overview",
-              "ja/guides/best-practices",
-              "ja/guides/troubleshooting"
+            "tab": "ドキュメント",
+            "groups": [
+              {
+                "group": "はじめに",
+                "pages": ["ja/introduction", "ja/quickstart"]
+              },
+              {
+                "group": "ガイド",
+                "pages": [
+                  "ja/guides/overview",
+                  "ja/guides/best-practices",
+                  "ja/guides/troubleshooting"
+                ]
+              },
+              {
+                "group": "リリースノート",
+                "pages": ["ja/changelog"]
+              }
             ]
           },
           {
-            "group": "インテグレーション",
-            "pages": [
-              "ja/integrations/overview",
-              "ja/integrations/slack"
+            "tab": "インテグレーション",
+            "groups": [
+              {
+                "group": "インテグレーション",
+                "pages": [
+                  "ja/integrations/overview",
+                  "ja/integrations/slack"
+                ]
+              }
             ]
           },
           {
-            "group": "リリースノート",
-            "pages": ["ja/changelog"]
+            "tab": "API リファレンス",
+            "groups": [
+              {
+                "group": "API",
+                "pages": [
+                  "ja/api-reference/overview",
+                  "ja/api-reference/authentication"
+                ]
+              }
+            ]
           }
         ]
       }
