@@ -1,11 +1,11 @@
 ---
 title: Authentication
-description: How to authenticate with the Emma API
+description: How to authenticate with the emma API
 ---
 
 # Authentication
 
-Learn how to authenticate your requests to the Emma API.
+Learn how to authenticate your requests to the emma API.
 
 ## API Keys
 
@@ -18,7 +18,7 @@ Authorization: Bearer YOUR_API_KEY
 ## Getting Your API Key
 
 <Steps>
-  <Step title="Sign in to Emma">
+  <Step title="Sign in to emma">
     Go to [app.emma.ai](https://app.emma.ai) and sign in to your account.
   </Step>
   <Step title="Navigate to Settings">
@@ -44,7 +44,7 @@ Keep your API key secure! Never expose it in client-side code or public reposito
     curl -X POST "https://api.emma.ai/v1/sessions" \
       -H "Authorization: Bearer YOUR_API_KEY" \
       -H "Content-Type: application/json" \
-      -d '{"prompt": "Hello, Emma!"}'
+      -d '{"prompt": "Hello, emma!"}'
     ```
   </Tab>
   <Tab title="Python">
@@ -59,7 +59,7 @@ Keep your API key secure! Never expose it in client-side code or public reposito
     response = requests.post(
         "https://api.emma.ai/v1/sessions",
         headers=headers,
-        json={"prompt": "Hello, Emma!"}
+        json={"prompt": "Hello, emma!"}
     )
     ```
   </Tab>
@@ -71,7 +71,7 @@ Keep your API key secure! Never expose it in client-side code or public reposito
         "Authorization": "Bearer YOUR_API_KEY",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ prompt: "Hello, Emma!" })
+      body: JSON.stringify({ prompt: "Hello, emma!" })
     });
     ```
   </Tab>

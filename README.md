@@ -1,6 +1,6 @@
-# Emma Documentation
+# emma Documentation
 
-Emma documentation - Powered by [Mintlify](https://mintlify.com)
+emma documentation - Powered by [Mintlify](https://mintlify.com)
 
 ## Development
 

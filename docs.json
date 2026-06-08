@@ -1,15 +1,15 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Emma Documentation",
+  "name": "emma Documentation",
   "colors": {
     "primary": "#0066cc",
     "light": "#4d94ff",
     "dark": "#004499"
   },
   "logo": {
-    "light": "/images/logo-light.png",
-    "dark": "/images/logo-dark.png"
+    "light": "/images/logo-light.svg",
+    "dark": "/images/logo-dark.svg"
   },
   "favicon": "/images/favicon.png",
   "topbarLinks": [
@@ -103,7 +103,7 @@
     "thumbsRating": true
   },
   "search": {
-    "prompt": "Search Emma docs..."
+    "prompt": "Search emma docs..."
   },
   "llmsTxt": {
     "enabled": true
