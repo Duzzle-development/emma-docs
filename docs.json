@@ -13,9 +13,6 @@
   },
   "favicon": "/images/favicon.png",
   "navbar": {
-    "links": [
-      { "type": "github", "href": "https://github.com/Duzzle-development/emma-docs" }
-    ],
     "primary": {
       "type": "button",
       "label": "Get Started",
