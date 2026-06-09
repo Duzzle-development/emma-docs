@@ -12,6 +12,9 @@
     "dark": "/images/logo-dark.svg"
   },
   "favicon": "/images/favicon.png",
+  "icons": {
+    "library": "lucide"
+  },
   "navbar": {
     "primary": {
       "type": "button",
@@ -32,11 +35,19 @@
                 "pages": ["introduction", "quickstart"]
               },
               {
-                "group": "Guides",
+                "group": "How to Use emma",
                 "pages": [
                   "guides/overview",
                   "guides/best-practices",
                   "guides/troubleshooting"
+                ]
+              },
+              {
+                "group": "Product Guide",
+                "icon": "package",
+                "pages": [
+                  "product-guide/overview",
+                  "product-guide/schedule"
                 ]
               },
               {
@@ -83,11 +94,19 @@
                 "pages": ["ja/introduction", "ja/quickstart"]
               },
               {
-                "group": "ガイド",
+                "group": "emmaの使い方",
                 "pages": [
                   "ja/guides/overview",
                   "ja/guides/best-practices",
                   "ja/guides/troubleshooting"
+                ]
+              },
+              {
+                "group": "製品ガイド",
+                "icon": "package",
+                "pages": [
+                  "ja/product-guide/overview",
+                  "ja/product-guide/schedule"
                 ]
               },
               {
