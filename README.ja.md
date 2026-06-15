@@ -4,7 +4,7 @@
   <a href="README.md">English</a> | <a href="README.ja.md">日本語</a>
 </p>
 
-[emma](https://app.emma.ai) の公式ドキュメントです - チーム向けAIアシスタント
+[emma](https://app.emma.ai) の公式ドキュメントです
 
 **公開サイト:** [docs.duzzle.dev](https://docs.duzzle.dev)
 
