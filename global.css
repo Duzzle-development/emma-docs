@@ -1,0 +1,12 @@
+/* Custom styles for emma documentation */
+
+/* Override navbar CTA button color to use primary green */
+#navbar a[href="https://app.emma.ai"] {
+  background-color: #10b981 !important;
+  border-color: #10b981 !important;
+}
+
+#navbar a[href="https://app.emma.ai"]:hover {
+  background-color: #059669 !important;
+  border-color: #059669 !important;
+}
