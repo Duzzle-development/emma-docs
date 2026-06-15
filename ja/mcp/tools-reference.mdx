@@ -1,0 +1,346 @@
+---
+title: ツールリファレンス
+description: emma MCP Serverの全ツールの完全なリファレンスドキュメント。パラメータ、例、戻り値を含みます。
+---
+
+このページでは、emma MCP Serverで利用可能な全ツールの詳細なドキュメントを提供します。
+
+## タスク実行
+
+### emma_run_task
+
+emmaでタスクを実行します。
+
+<ParamField path="prompt" type="string" required>
+  実行するタスクの説明。具体的かつ明確に記述してください。
+  
+  **例:**
+  - `「今日の天気をSlackの#generalに投稿して」`
+  - `「最新のGitHub issueをまとめて」`
+  - `「明日のミーティングについてチームにリマインダーメールを送って」`
+</ParamField>
+
+<ParamField path="mode" type="string" default="normal">
+  タスクの実行モード。
+  
+  | 値 | 説明 |
+  |----|------|
+  | `normal` | 標準実行（デフォルト） |
+  | `deep_thinking` | 複雑なタスク向けの拡張推論 |
+  | `ask` | 情報収集モード |
+</ParamField>
+
+<ParamField path="timezone" type="string" default="Asia/Tokyo">
+  IANA形式のタイムゾーン（例: `America/New_York`, `Europe/London`）。
+</ParamField>
+
+<Tabs>
+  <Tab title="リクエスト例">
+    ```json
+    {
+      "prompt": "今日の天気予報をSlackの#generalに投稿して",
+      "mode": "normal",
+      "timezone": "Asia/Tokyo"
+    }
+    ```
+  </Tab>
+  <Tab title="レスポンス例">
+    ```json
+    {
+      "success": true,
+      "task_id": "task_abc123",
+      "message": "タスクが正常に実行されました"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+### emma_health_check
+
+emma API接続状態を確認します。このツールはパラメータを取りません。
+
+<Tabs>
+  <Tab title="リクエスト例">
+    ```json
+    {}
+    ```
+  </Tab>
+  <Tab title="レスポンス例">
+    ```json
+    {
+      "status": "healthy",
+      "api_version": "1.0.0",
+      "timestamp": "2024-01-15T10:30:00Z"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## オートメーション管理
+
+### emma_create_automation
+
+新しいスケジュールオートメーションを作成します。
+
+<ParamField path="name" type="string" required>
+  オートメーションの名前。
+  
+  **例:** `「デイリーヘルスダイジェスト」`, `「週次レポート」`, `「1時間ごとのステータスチェック」`
+</ParamField>
+
+<ParamField path="prompt" type="string" required>
+  emmaがスケジュールに従って実行するタスクのプロンプト。
+</ParamField>
+
+<ParamField path="cron_expression" type="string" required>
+  スケジュールを定義するcron式。
+  
+  **一般的なパターン:**
+  | 式 | 説明 |
+  |----|------|
+  | `0 9 * * *` | 毎日9:00 |
+  | `0 9 * * 1` | 毎週月曜9:00 |
+  | `0 */2 * * *` | 2時間ごと |
+  | `0 9 1 * *` | 毎月1日9:00 |
+</ParamField>
+
+<ParamField path="timezone" type="string" default="Asia/Tokyo">
+  IANA形式のスケジュール用タイムゾーン。
+</ParamField>
+
+<ParamField path="enabled" type="boolean" default={true}>
+  オートメーションをすぐに有効にするかどうか。
+</ParamField>
+
+<Tabs>
+  <Tab title="リクエスト例">
+    ```json
+    {
+      "name": "デイリースタンドアップリマインダー",
+      "prompt": "Slackの#teamにスタンドアップリマインダーを送信",
+      "cron_expression": "0 9 * * 1-5",
+      "timezone": "Asia/Tokyo",
+      "enabled": true
+    }
+    ```
+  </Tab>
+  <Tab title="レスポンス例">
+    ```json
+    {
+      "success": true,
+      "automation_id": "sched_abc123",
+      "name": "デイリースタンドアップリマインダー",
+      "next_run": "2024-01-16T09:00:00+09:00"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+### emma_list_automations
+
+ユーザーの全オートメーションを一覧表示します。
+
+<ParamField path="timezone" type="string" default="Asia/Tokyo">
+  スケジュール時刻表示用のタイムゾーン。
+</ParamField>
+
+<Tabs>
+  <Tab title="リクエスト例">
+    ```json
+    {
+      "timezone": "Asia/Tokyo"
+    }
+    ```
+  </Tab>
+  <Tab title="レスポンス例">
+    ```json
+    {
+      "automations": [
+        {
+          "automation_id": "sched_abc123",
+          "name": "デイリースタンドアップリマインダー",
+          "cron_expression": "0 9 * * 1-5",
+          "enabled": true,
+          "next_run": "2024-01-16T09:00:00+09:00"
+        },
+        {
+          "automation_id": "sched_def456",
+          "name": "週次レポート",
+          "cron_expression": "0 10 * * 1",
+          "enabled": true,
+          "next_run": "2024-01-22T10:00:00+09:00"
+        }
+      ],
+      "total": 2
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+### emma_get_automation
+
+特定のオートメーションの詳細を取得します。
+
+<ParamField path="automation_id" type="string" required>
+  オートメーションID（例: `"sched_abc123"`）。
+</ParamField>
+
+<ParamField path="timezone" type="string" default="Asia/Tokyo">
+  スケジュール時刻表示用のタイムゾーン。
+</ParamField>
+
+<Tabs>
+  <Tab title="リクエスト例">
+    ```json
+    {
+      "automation_id": "sched_abc123",
+      "timezone": "Asia/Tokyo"
+    }
+    ```
+  </Tab>
+  <Tab title="レスポンス例">
+    ```json
+    {
+      "automation_id": "sched_abc123",
+      "name": "デイリースタンドアップリマインダー",
+      "prompt": "Slackの#teamにスタンドアップリマインダーを送信",
+      "cron_expression": "0 9 * * 1-5",
+      "timezone": "Asia/Tokyo",
+      "enabled": true,
+      "created_at": "2024-01-10T14:30:00+09:00",
+      "next_run": "2024-01-16T09:00:00+09:00",
+      "last_run": "2024-01-15T09:00:00+09:00"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+### emma_update_automation
+
+既存のオートメーションを更新します。指定されたフィールドのみが更新されます。
+
+<ParamField path="automation_id" type="string" required>
+  更新するオートメーションID。
+</ParamField>
+
+<ParamField path="name" type="string">
+  新しい名前。
+</ParamField>
+
+<ParamField path="prompt" type="string">
+  新しいタスクプロンプト。
+</ParamField>
+
+<ParamField path="cron_expression" type="string">
+  新しいcron式。
+</ParamField>
+
+<ParamField path="timezone" type="string">
+  新しいタイムゾーン。
+</ParamField>
+
+<ParamField path="enabled" type="boolean">
+  オートメーションの有効/無効を切り替え。
+</ParamField>
+
+<Tabs>
+  <Tab title="リクエスト例">
+    ```json
+    {
+      "automation_id": "sched_abc123",
+      "cron_expression": "0 10 * * 1-5",
+      "enabled": false
+    }
+    ```
+  </Tab>
+  <Tab title="レスポンス例">
+    ```json
+    {
+      "success": true,
+      "automation_id": "sched_abc123",
+      "updated_fields": ["cron_expression", "enabled"],
+      "next_run": null
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+### emma_delete_automation
+
+オートメーションを削除します。この操作は元に戻せません。
+
+<ParamField path="automation_id" type="string" required>
+  削除するオートメーションID。
+</ParamField>
+
+<Warning>
+オートメーションの削除は永続的で、元に戻すことはできません。
+</Warning>
+
+<Tabs>
+  <Tab title="リクエスト例">
+    ```json
+    {
+      "automation_id": "sched_abc123"
+    }
+    ```
+  </Tab>
+  <Tab title="レスポンス例">
+    ```json
+    {
+      "success": true,
+      "message": "オートメーション「デイリースタンドアップリマインダー」が削除されました"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## Cron式リファレンス
+
+Cron式は標準の5フィールド形式に従います：
+
+```
+┌───────────── 分 (0-59)
+│ ┌───────────── 時 (0-23)
+│ │ ┌───────────── 日 (1-31)
+│ │ │ ┌───────────── 月 (1-12)
+│ │ │ │ ┌───────────── 曜日 (0-6, 日曜=0)
+│ │ │ │ │
+* * * * *
+```
+
+### 一般的な例
+
+| 式 | 説明 |
+|----|------|
+| `0 9 * * *` | 毎日9:00 |
+| `0 9 * * 1-5` | 平日9:00 |
+| `0 9 * * 0` | 毎週日曜9:00 |
+| `0 */2 * * *` | 2時間ごと |
+| `30 8 * * *` | 毎日8:30 |
+| `0 9 1 * *` | 毎月1日9:00 |
+| `0 9 * * 1` | 毎週月曜9:00 |
+| `0 0 * * *` | 毎日0:00 |
+
+### 特殊文字
+
+| 文字 | 説明 | 例 |
+|------|------|-----|
+| `*` | 任意の値 | `* * * * *`（毎分） |
+| `,` | リスト区切り | `0 9,12,18 * * *`（9時、12時、18時） |
+| `-` | 範囲 | `0 9 * * 1-5`（月曜から金曜） |
+| `/` | ステップ | `*/15 * * * *`（15分ごと） |

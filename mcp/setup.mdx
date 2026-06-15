@@ -1,0 +1,170 @@
+---
+title: Setup
+description: Configure emma MCP Server in Cursor to start using emma's capabilities from your IDE.
+---
+
+This guide walks you through setting up the emma MCP Server in Cursor.
+
+## Prerequisites
+
+Before you begin, make sure you have:
+
+- **Cursor** installed on your machine
+- An **emma account** with API access
+- Your **emma API Key** (available in Settings)
+
+## Configuration
+
+### Step 1: Get Your API Key
+
+1. Log in to [emma](https://app.emma.ai)
+2. Go to **Settings**
+3. Copy your API Key
+
+### Step 2: Configure Cursor
+
+Add the emma MCP server to your Cursor configuration file.
+
+<Tabs>
+  <Tab title="macOS / Linux">
+    Edit `~/.cursor/mcp.json`:
+
+    ```json
+    {
+      "mcpServers": {
+        "emma": {
+          "command": "python",
+          "args": ["-m", "emma_mcp"],
+          "env": {
+            "EMMA_API_KEY": "your_api_key_here"
+          }
+        }
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="Windows">
+    Edit `%APPDATA%\Cursor\mcp.json`:
+
+    ```json
+    {
+      "mcpServers": {
+        "emma": {
+          "command": "python",
+          "args": ["-m", "emma_mcp"],
+          "env": {
+            "EMMA_API_KEY": "your_api_key_here"
+          }
+        }
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+<Warning>
+Replace `your_api_key_here` with your actual emma API Key. Never commit your API key to version control.
+</Warning>
+
+### Step 3: Restart Cursor
+
+After saving the configuration file, restart Cursor to load the MCP server.
+
+## Verify the Connection
+
+To verify that emma MCP Server is working correctly, you can use the health check tool:
+
+1. Open Cursor
+2. In the AI chat, ask: "Check emma connection status"
+3. The `emma_health_check` tool should return a successful response
+
+## Configuration Options
+
+### Environment Variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `EMMA_API_KEY` | ✅ | Your emma API key |
+
+## Troubleshooting
+
+### Server Not Starting
+
+<AccordionGroup>
+  <Accordion title="Python not found">
+    Make sure Python is installed and available in your PATH. You can verify by running:
+    
+    ```bash
+    python --version
+    ```
+    
+    If Python is not found, install it from [python.org](https://www.python.org/downloads/).
+  </Accordion>
+  
+  <Accordion title="Module not found: emma_mcp">
+    Ensure the emma MCP package is installed correctly. Contact support if you need assistance with installation.
+  </Accordion>
+  
+  <Accordion title="Invalid API Key">
+    Double-check that your API key is correct and hasn't expired. You can generate a new key from emma Settings.
+  </Accordion>
+</AccordionGroup>
+
+### Connection Issues
+
+<AccordionGroup>
+  <Accordion title="Health check fails">
+    1. Verify your internet connection
+    2. Check that your API key is valid
+    3. Ensure there are no firewall rules blocking the connection
+  </Accordion>
+  
+  <Accordion title="Tools not appearing">
+    1. Restart Cursor completely
+    2. Check the MCP configuration file for syntax errors
+    3. Verify the server name matches exactly: `emma`
+  </Accordion>
+</AccordionGroup>
+
+## Security Best Practices
+
+<Steps>
+  <Step title="Use Environment Variables">
+    Instead of hardcoding your API key, consider using environment variables:
+    
+    ```json
+    {
+      "mcpServers": {
+        "emma": {
+          "command": "python",
+          "args": ["-m", "emma_mcp"],
+          "env": {
+            "EMMA_API_KEY": "${EMMA_API_KEY}"
+          }
+        }
+      }
+    }
+    ```
+    
+    Then set the environment variable in your shell profile.
+  </Step>
+  
+  <Step title="Restrict API Key Permissions">
+    If emma supports scoped API keys, use a key with only the permissions you need.
+  </Step>
+  
+  <Step title="Rotate Keys Regularly">
+    Periodically generate new API keys and revoke old ones.
+  </Step>
+</Steps>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="emma MCP Server" icon="server" href="/mcp/emma-mcp-server">
+    Learn about available tools and use cases
+  </Card>
+  <Card title="Tools Reference" icon="book" href="/mcp/tools-reference">
+    Detailed documentation for all tools
+  </Card>
+</CardGroup>

@@ -1,0 +1,170 @@
+---
+title: セットアップ
+description: Cursorでemma MCP Serverを設定し、IDEからemmaの機能を使い始めましょう。
+---
+
+このガイドでは、Cursorでemma MCP Serverをセットアップする手順を説明します。
+
+## 前提条件
+
+始める前に、以下を確認してください：
+
+- **Cursor**がインストールされていること
+- APIアクセス権のある**emmaアカウント**
+- **emma API Key**（Settingsで取得可能）
+
+## 設定
+
+### ステップ1: API Keyを取得
+
+1. [emma](https://app.emma.ai)にログイン
+2. **Settings**に移動
+3. API Keyをコピー
+
+### ステップ2: Cursorを設定
+
+Cursorの設定ファイルにemma MCPサーバーを追加します。
+
+<Tabs>
+  <Tab title="macOS / Linux">
+    `~/.cursor/mcp.json`を編集：
+
+    ```json
+    {
+      "mcpServers": {
+        "emma": {
+          "command": "python",
+          "args": ["-m", "emma_mcp"],
+          "env": {
+            "EMMA_API_KEY": "your_api_key_here"
+          }
+        }
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="Windows">
+    `%APPDATA%\Cursor\mcp.json`を編集：
+
+    ```json
+    {
+      "mcpServers": {
+        "emma": {
+          "command": "python",
+          "args": ["-m", "emma_mcp"],
+          "env": {
+            "EMMA_API_KEY": "your_api_key_here"
+          }
+        }
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+<Warning>
+`your_api_key_here`を実際のemma API Keyに置き換えてください。API Keyをバージョン管理にコミットしないでください。
+</Warning>
+
+### ステップ3: Cursorを再起動
+
+設定ファイルを保存したら、Cursorを再起動してMCPサーバーを読み込みます。
+
+## 接続の確認
+
+emma MCP Serverが正しく動作しているか確認するには、ヘルスチェックツールを使用します：
+
+1. Cursorを開く
+2. AIチャットで「emmaの接続状態を確認して」と入力
+3. `emma_health_check`ツールが成功レスポンスを返すはずです
+
+## 設定オプション
+
+### 環境変数
+
+| 変数 | 必須 | 説明 |
+|------|------|------|
+| `EMMA_API_KEY` | ✅ | emma API Key |
+
+## トラブルシューティング
+
+### サーバーが起動しない
+
+<AccordionGroup>
+  <Accordion title="Pythonが見つからない">
+    PythonがインストールされていてPATHに含まれていることを確認してください。以下のコマンドで確認できます：
+    
+    ```bash
+    python --version
+    ```
+    
+    Pythonが見つからない場合は、[python.org](https://www.python.org/downloads/)からインストールしてください。
+  </Accordion>
+  
+  <Accordion title="モジュールが見つからない: emma_mcp">
+    emma MCPパッケージが正しくインストールされていることを確認してください。インストールについてサポートが必要な場合はお問い合わせください。
+  </Accordion>
+  
+  <Accordion title="無効なAPI Key">
+    API Keyが正しく、有効期限が切れていないことを確認してください。emmaのSettingsから新しいキーを生成できます。
+  </Accordion>
+</AccordionGroup>
+
+### 接続の問題
+
+<AccordionGroup>
+  <Accordion title="ヘルスチェックが失敗する">
+    1. インターネット接続を確認
+    2. API Keyが有効であることを確認
+    3. ファイアウォールルールが接続をブロックしていないことを確認
+  </Accordion>
+  
+  <Accordion title="ツールが表示されない">
+    1. Cursorを完全に再起動
+    2. MCP設定ファイルの構文エラーを確認
+    3. サーバー名が正確に一致していることを確認：`emma`
+  </Accordion>
+</AccordionGroup>
+
+## セキュリティのベストプラクティス
+
+<Steps>
+  <Step title="環境変数を使用">
+    API Keyをハードコードする代わりに、環境変数の使用を検討してください：
+    
+    ```json
+    {
+      "mcpServers": {
+        "emma": {
+          "command": "python",
+          "args": ["-m", "emma_mcp"],
+          "env": {
+            "EMMA_API_KEY": "${EMMA_API_KEY}"
+          }
+        }
+      }
+    }
+    ```
+    
+    その後、シェルプロファイルで環境変数を設定します。
+  </Step>
+  
+  <Step title="API Key権限を制限">
+    emmaがスコープ付きAPI Keyをサポートしている場合、必要な権限のみを持つキーを使用してください。
+  </Step>
+  
+  <Step title="定期的にキーをローテーション">
+    定期的に新しいAPI Keyを生成し、古いものを無効にしてください。
+  </Step>
+</Steps>
+
+## 次のステップ
+
+<CardGroup cols={2}>
+  <Card title="emma MCP Server" icon="server" href="/ja/mcp/emma-mcp-server">
+    利用可能なツールとユースケースについて学ぶ
+  </Card>
+  <Card title="ツールリファレンス" icon="book" href="/ja/mcp/tools-reference">
+    全ツールの詳細ドキュメント
+  </Card>
+</CardGroup>

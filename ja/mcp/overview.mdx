@@ -1,0 +1,60 @@
+---
+title: MCP 概要
+description: Model Context Protocol（MCP）について学び、emmaの機能を外部ツールで拡張する方法を理解しましょう。
+---
+
+## MCPとは？
+
+**Model Context Protocol（MCP）** は、AIアプリケーションが外部のデータソースやツールに安全に接続するためのオープンスタンダードです。MCPは、AIアプリケーションにとってのUSB-Cポートのようなもの — 様々なサービスに接続するための標準化された方法です。
+
+MCPを使用することで、emmaのようなAIエージェントに、統一されたインターフェースを通じてツール、データベース、API、その他のサービスへのアクセスを提供できます。
+
+## emmaでMCPを使うメリット
+
+emmaをMCPサーバーに接続することで、以下のことが可能になります：
+
+<CardGroup cols={2}>
+  <Card title="機能の拡張" icon="puzzle-piece">
+    組み込みインテグレーション以外のツールやサービスへのアクセスを提供
+  </Card>
+  <Card title="ワークフローの自動化" icon="robot">
+    emmaと既存ツールを組み合わせた強力な自動化を作成
+  </Card>
+  <Card title="カスタムインテグレーション" icon="code">
+    カスタムMCPサーバーを構築して社内システムと接続
+  </Card>
+  <Card title="標準化されたプロトコル" icon="plug">
+    異なるAIアプリケーション間で同じプロトコルを使用
+  </Card>
+</CardGroup>
+
+## 対応トランスポート
+
+emma MCP Serverは現在、**stdio（標準入出力）** トランスポートに対応しています。これはCursorなどのローカルMCPクライアントで使用されます。
+
+| トランスポート | 状態 | 説明 |
+|--------------|------|------|
+| **stdio** | ✅ 対応 | ローカルプロセスとして起動し、stdin/stdoutで通信 |
+| SSE | ❌ 未対応 | Server-Sent Events |
+| Streamable HTTP | ❌ 未対応 | HTTPベースのストリーミング |
+
+## 対応クライアント
+
+現在、emma MCP Serverは以下のクライアントを公式にサポートしています：
+
+- **Cursor** — AI搭載コードエディタ
+
+<Note>
+今後のリリースで、追加のクライアント（Claude Desktop、Windsurfなど）のサポートが追加される可能性があります。
+</Note>
+
+## 次のステップ
+
+<CardGroup cols={2}>
+  <Card title="emma MCP Server" icon="server" href="/ja/mcp/emma-mcp-server">
+    emma公式MCPサーバーと利用可能なツールについて学ぶ
+  </Card>
+  <Card title="セットアップガイド" icon="wrench" href="/ja/mcp/setup">
+    emma MCPの設定を始める
+  </Card>
+</CardGroup>

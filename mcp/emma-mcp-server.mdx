@@ -1,0 +1,115 @@
+---
+title: emma MCP Server
+description: Connect your AI tools to emma using the official MCP server for task execution and automation management.
+---
+
+The emma MCP Server provides programmatic access to emma's core capabilities, allowing you to run tasks and manage automations directly from MCP-compatible clients like Cursor.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Task Execution" icon="play">
+    Run tasks on emma with customizable execution modes
+  </Card>
+  <Card title="Automation Management" icon="clock">
+    Create, update, and manage scheduled automations
+  </Card>
+  <Card title="Health Monitoring" icon="heart-pulse">
+    Check API connection status
+  </Card>
+  <Card title="Flexible Scheduling" icon="calendar">
+    Use cron expressions for precise scheduling
+  </Card>
+</CardGroup>
+
+## Authentication
+
+The emma MCP Server requires an API key for authentication.
+
+### Getting Your API Key
+
+1. Log in to [emma](https://app.emma.ai)
+2. Navigate to **Settings**
+3. Generate or copy your API key
+
+<Warning>
+Keep your API key secure. Do not commit it to version control or share it publicly.
+</Warning>
+
+## Available Tools
+
+The emma MCP Server provides 7 tools organized into two categories:
+
+### Task Execution
+
+| Tool | Description |
+|------|-------------|
+| `emma_run_task` | Execute a task on emma with customizable modes |
+| `emma_health_check` | Check emma API connection status |
+
+### Automation Management
+
+| Tool | Description |
+|------|-------------|
+| `emma_create_automation` | Create a new scheduled automation |
+| `emma_list_automations` | List all automations |
+| `emma_get_automation` | Get details of a specific automation |
+| `emma_update_automation` | Update an existing automation |
+| `emma_delete_automation` | Delete an automation |
+
+<Note>
+For detailed parameter information, see the [Tools Reference](/mcp/tools-reference).
+</Note>
+
+## Use Cases
+
+### Run a Task from Your IDE
+
+Ask emma to perform tasks directly from Cursor:
+
+```
+"Post today's weather forecast to Slack #general"
+"Summarize the latest GitHub issues and send to the team"
+"Check our monitoring dashboard and report any anomalies"
+```
+
+### Create Scheduled Automations
+
+Set up recurring tasks that run automatically:
+
+```
+"Create a daily standup reminder at 9 AM"
+"Schedule a weekly report every Monday morning"
+"Set up hourly health checks for our production system"
+```
+
+### Manage Your Automations
+
+View, update, or delete your scheduled tasks:
+
+```
+"List all my automations"
+"Disable the daily report automation"
+"Change the weekly sync to run at 10 AM instead of 9 AM"
+```
+
+## Execution Modes
+
+When running tasks with `emma_run_task`, you can specify different execution modes:
+
+| Mode | Description | Best For |
+|------|-------------|----------|
+| `normal` | Standard execution (default) | Most tasks |
+| `deep_thinking` | Extended reasoning for complex tasks | Complex analysis, multi-step tasks |
+| `ask` | Information gathering mode | Research, data collection |
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Setup Guide" icon="wrench" href="/mcp/setup">
+    Configure emma MCP Server in Cursor
+  </Card>
+  <Card title="Tools Reference" icon="book" href="/mcp/tools-reference">
+    Detailed documentation for all tools
+  </Card>
+</CardGroup>

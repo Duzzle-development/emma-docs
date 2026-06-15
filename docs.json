@@ -80,6 +80,20 @@
                 ]
               }
             ]
+          },
+          {
+            "tab": "MCP",
+            "groups": [
+              {
+                "group": "MCP",
+                "pages": [
+                  "mcp/overview",
+                  "mcp/emma-mcp-server",
+                  "mcp/setup",
+                  "mcp/tools-reference"
+                ]
+              }
+            ]
           }
         ]
       },
@@ -136,6 +150,20 @@
                 "pages": [
                   "ja/api-reference/overview",
                   "ja/api-reference/authentication"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "MCP",
+            "groups": [
+              {
+                "group": "MCP",
+                "pages": [
+                  "ja/mcp/overview",
+                  "ja/mcp/emma-mcp-server",
+                  "ja/mcp/setup",
+                  "ja/mcp/tools-reference"
                 ]
               }
             ]

@@ -1,0 +1,346 @@
+---
+title: Tools Reference
+description: Complete reference documentation for all emma MCP Server tools with parameters, examples, and return values.
+---
+
+This page provides detailed documentation for all tools available in the emma MCP Server.
+
+## Task Execution
+
+### emma_run_task
+
+Execute a task on emma.
+
+<ParamField path="prompt" type="string" required>
+  The task description to execute. Be specific and clear.
+  
+  **Examples:**
+  - `"Post today's weather to Slack #general"`
+  - `"Summarize the latest GitHub issues"`
+  - `"Send a reminder email to the team about tomorrow's meeting"`
+</ParamField>
+
+<ParamField path="mode" type="string" default="normal">
+  Execution mode for the task.
+  
+  | Value | Description |
+  |-------|-------------|
+  | `normal` | Standard execution (default) |
+  | `deep_thinking` | Extended reasoning for complex tasks |
+  | `ask` | Information gathering mode |
+</ParamField>
+
+<ParamField path="timezone" type="string" default="Asia/Tokyo">
+  Timezone in IANA format (e.g., `America/New_York`, `Europe/London`).
+</ParamField>
+
+<Tabs>
+  <Tab title="Example Request">
+    ```json
+    {
+      "prompt": "Post today's weather forecast to Slack #general",
+      "mode": "normal",
+      "timezone": "Asia/Tokyo"
+    }
+    ```
+  </Tab>
+  <Tab title="Example Response">
+    ```json
+    {
+      "success": true,
+      "task_id": "task_abc123",
+      "message": "Task executed successfully"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+### emma_health_check
+
+Check emma API connection status. This tool takes no parameters.
+
+<Tabs>
+  <Tab title="Example Request">
+    ```json
+    {}
+    ```
+  </Tab>
+  <Tab title="Example Response">
+    ```json
+    {
+      "status": "healthy",
+      "api_version": "1.0.0",
+      "timestamp": "2024-01-15T10:30:00Z"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## Automation Management
+
+### emma_create_automation
+
+Create a new scheduled automation.
+
+<ParamField path="name" type="string" required>
+  Name for the automation.
+  
+  **Examples:** `"Daily Health Digest"`, `"Weekly Report"`, `"Hourly Status Check"`
+</ParamField>
+
+<ParamField path="prompt" type="string" required>
+  The task prompt that emma will execute on schedule.
+</ParamField>
+
+<ParamField path="cron_expression" type="string" required>
+  Cron expression defining the schedule.
+  
+  **Common patterns:**
+  | Expression | Description |
+  |------------|-------------|
+  | `0 9 * * *` | Every day at 9:00 AM |
+  | `0 9 * * 1` | Every Monday at 9:00 AM |
+  | `0 */2 * * *` | Every 2 hours |
+  | `0 9 1 * *` | First day of every month at 9:00 AM |
+</ParamField>
+
+<ParamField path="timezone" type="string" default="Asia/Tokyo">
+  Timezone for the schedule in IANA format.
+</ParamField>
+
+<ParamField path="enabled" type="boolean" default={true}>
+  Whether the automation should be enabled immediately.
+</ParamField>
+
+<Tabs>
+  <Tab title="Example Request">
+    ```json
+    {
+      "name": "Daily Standup Reminder",
+      "prompt": "Send a standup reminder to Slack #team",
+      "cron_expression": "0 9 * * 1-5",
+      "timezone": "Asia/Tokyo",
+      "enabled": true
+    }
+    ```
+  </Tab>
+  <Tab title="Example Response">
+    ```json
+    {
+      "success": true,
+      "automation_id": "sched_abc123",
+      "name": "Daily Standup Reminder",
+      "next_run": "2024-01-16T09:00:00+09:00"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+### emma_list_automations
+
+List all automations for the user.
+
+<ParamField path="timezone" type="string" default="Asia/Tokyo">
+  Timezone for displaying schedule times.
+</ParamField>
+
+<Tabs>
+  <Tab title="Example Request">
+    ```json
+    {
+      "timezone": "Asia/Tokyo"
+    }
+    ```
+  </Tab>
+  <Tab title="Example Response">
+    ```json
+    {
+      "automations": [
+        {
+          "automation_id": "sched_abc123",
+          "name": "Daily Standup Reminder",
+          "cron_expression": "0 9 * * 1-5",
+          "enabled": true,
+          "next_run": "2024-01-16T09:00:00+09:00"
+        },
+        {
+          "automation_id": "sched_def456",
+          "name": "Weekly Report",
+          "cron_expression": "0 10 * * 1",
+          "enabled": true,
+          "next_run": "2024-01-22T10:00:00+09:00"
+        }
+      ],
+      "total": 2
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+### emma_get_automation
+
+Get details of a specific automation.
+
+<ParamField path="automation_id" type="string" required>
+  The automation ID (e.g., `"sched_abc123"`).
+</ParamField>
+
+<ParamField path="timezone" type="string" default="Asia/Tokyo">
+  Timezone for displaying schedule times.
+</ParamField>
+
+<Tabs>
+  <Tab title="Example Request">
+    ```json
+    {
+      "automation_id": "sched_abc123",
+      "timezone": "Asia/Tokyo"
+    }
+    ```
+  </Tab>
+  <Tab title="Example Response">
+    ```json
+    {
+      "automation_id": "sched_abc123",
+      "name": "Daily Standup Reminder",
+      "prompt": "Send a standup reminder to Slack #team",
+      "cron_expression": "0 9 * * 1-5",
+      "timezone": "Asia/Tokyo",
+      "enabled": true,
+      "created_at": "2024-01-10T14:30:00+09:00",
+      "next_run": "2024-01-16T09:00:00+09:00",
+      "last_run": "2024-01-15T09:00:00+09:00"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+### emma_update_automation
+
+Update an existing automation. Only specified fields will be updated.
+
+<ParamField path="automation_id" type="string" required>
+  The automation ID to update.
+</ParamField>
+
+<ParamField path="name" type="string">
+  New name for the automation.
+</ParamField>
+
+<ParamField path="prompt" type="string">
+  New task prompt.
+</ParamField>
+
+<ParamField path="cron_expression" type="string">
+  New cron expression.
+</ParamField>
+
+<ParamField path="timezone" type="string">
+  New timezone.
+</ParamField>
+
+<ParamField path="enabled" type="boolean">
+  Enable or disable the automation.
+</ParamField>
+
+<Tabs>
+  <Tab title="Example Request">
+    ```json
+    {
+      "automation_id": "sched_abc123",
+      "cron_expression": "0 10 * * 1-5",
+      "enabled": false
+    }
+    ```
+  </Tab>
+  <Tab title="Example Response">
+    ```json
+    {
+      "success": true,
+      "automation_id": "sched_abc123",
+      "updated_fields": ["cron_expression", "enabled"],
+      "next_run": null
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+### emma_delete_automation
+
+Delete an automation. This action cannot be undone.
+
+<ParamField path="automation_id" type="string" required>
+  The automation ID to delete.
+</ParamField>
+
+<Warning>
+Deleting an automation is permanent and cannot be undone.
+</Warning>
+
+<Tabs>
+  <Tab title="Example Request">
+    ```json
+    {
+      "automation_id": "sched_abc123"
+    }
+    ```
+  </Tab>
+  <Tab title="Example Response">
+    ```json
+    {
+      "success": true,
+      "message": "Automation 'Daily Standup Reminder' has been deleted"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## Cron Expression Reference
+
+Cron expressions follow the standard 5-field format:
+
+```
+┌───────────── minute (0-59)
+│ ┌───────────── hour (0-23)
+│ │ ┌───────────── day of month (1-31)
+│ │ │ ┌───────────── month (1-12)
+│ │ │ │ ┌───────────── day of week (0-6, Sunday=0)
+│ │ │ │ │
+* * * * *
+```
+
+### Common Examples
+
+| Expression | Description |
+|------------|-------------|
+| `0 9 * * *` | Every day at 9:00 AM |
+| `0 9 * * 1-5` | Weekdays at 9:00 AM |
+| `0 9 * * 0` | Every Sunday at 9:00 AM |
+| `0 */2 * * *` | Every 2 hours |
+| `30 8 * * *` | Every day at 8:30 AM |
+| `0 9 1 * *` | First day of month at 9:00 AM |
+| `0 9 * * 1` | Every Monday at 9:00 AM |
+| `0 0 * * *` | Every day at midnight |
+
+### Special Characters
+
+| Character | Description | Example |
+|-----------|-------------|---------|
+| `*` | Any value | `* * * * *` (every minute) |
+| `,` | List separator | `0 9,12,18 * * *` (9 AM, 12 PM, 6 PM) |
+| `-` | Range | `0 9 * * 1-5` (Monday to Friday) |
+| `/` | Step | `*/15 * * * *` (every 15 minutes) |

@@ -1,0 +1,60 @@
+---
+title: MCP Overview
+description: Learn about the Model Context Protocol (MCP) and how to extend emma's capabilities with external tools.
+---
+
+## What is MCP?
+
+The **Model Context Protocol (MCP)** is an open standard that enables AI applications to securely connect to external data sources and tools. Think of MCP like a USB-C port for AI applications — a standardized way to connect AI apps to different services.
+
+With MCP, you can give AI agents like emma access to your tools, databases, APIs, and other services through a unified interface.
+
+## Why Use MCP with emma?
+
+By connecting emma to MCP servers, you can:
+
+<CardGroup cols={2}>
+  <Card title="Extend Capabilities" icon="puzzle-piece">
+    Give emma access to tools and services beyond its built-in integrations
+  </Card>
+  <Card title="Automate Workflows" icon="robot">
+    Create powerful automations that combine emma with your existing tools
+  </Card>
+  <Card title="Custom Integrations" icon="code">
+    Build custom MCP servers to connect emma to your internal systems
+  </Card>
+  <Card title="Standardized Protocol" icon="plug">
+    Use the same protocol across different AI applications
+  </Card>
+</CardGroup>
+
+## Supported Transport
+
+emma MCP Server currently supports **stdio (standard input/output)** transport, which is used by local MCP clients like Cursor.
+
+| Transport | Status | Description |
+|-----------|--------|-------------|
+| **stdio** | ✅ Supported | Runs as a local process, communicates via stdin/stdout |
+| SSE | ❌ Not supported | Server-Sent Events |
+| Streamable HTTP | ❌ Not supported | HTTP-based streaming |
+
+## Supported Clients
+
+Currently, emma MCP Server officially supports:
+
+- **Cursor** — AI-powered code editor
+
+<Note>
+Support for additional clients (Claude Desktop, Windsurf, etc.) may be added in future releases.
+</Note>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="emma MCP Server" icon="server" href="/mcp/emma-mcp-server">
+    Learn about emma's official MCP server and available tools
+  </Card>
+  <Card title="Setup Guide" icon="wrench" href="/mcp/setup">
+    Get started with configuring emma MCP in your environment
+  </Card>
+</CardGroup>

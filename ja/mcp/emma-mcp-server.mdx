@@ -1,0 +1,115 @@
+---
+title: emma MCP Server
+description: 公式MCPサーバーを使用して、AIツールをemmaに接続し、タスク実行とオートメーション管理を行います。
+---
+
+emma MCP Serverは、emmaのコア機能へのプログラマティックなアクセスを提供し、CursorなどのMCP対応クライアントから直接タスクを実行したり、オートメーションを管理したりできます。
+
+## 機能
+
+<CardGroup cols={2}>
+  <Card title="タスク実行" icon="play">
+    カスタマイズ可能な実行モードでemmaのタスクを実行
+  </Card>
+  <Card title="オートメーション管理" icon="clock">
+    スケジュールされたオートメーションの作成、更新、管理
+  </Card>
+  <Card title="ヘルスモニタリング" icon="heart-pulse">
+    API接続状態の確認
+  </Card>
+  <Card title="柔軟なスケジューリング" icon="calendar">
+    cron式による精密なスケジュール設定
+  </Card>
+</CardGroup>
+
+## 認証
+
+emma MCP Serverは認証にAPI Keyを使用します。
+
+### API Keyの取得方法
+
+1. [emma](https://app.emma.ai)にログイン
+2. **Settings**に移動
+3. API Keyを生成またはコピー
+
+<Warning>
+API Keyは安全に保管してください。バージョン管理にコミットしたり、公開したりしないでください。
+</Warning>
+
+## 利用可能なツール
+
+emma MCP Serverは2つのカテゴリに分類された7つのツールを提供します：
+
+### タスク実行
+
+| ツール | 説明 |
+|--------|------|
+| `emma_run_task` | カスタマイズ可能なモードでemmaのタスクを実行 |
+| `emma_health_check` | emma API接続状態を確認 |
+
+### オートメーション管理
+
+| ツール | 説明 |
+|--------|------|
+| `emma_create_automation` | 新しいスケジュールオートメーションを作成 |
+| `emma_list_automations` | 全オートメーションを一覧表示 |
+| `emma_get_automation` | 特定のオートメーションの詳細を取得 |
+| `emma_update_automation` | 既存のオートメーションを更新 |
+| `emma_delete_automation` | オートメーションを削除 |
+
+<Note>
+詳細なパラメータ情報は[ツールリファレンス](/ja/mcp/tools-reference)を参照してください。
+</Note>
+
+## ユースケース
+
+### IDEからタスクを実行
+
+Cursorから直接emmaにタスクを依頼：
+
+```
+「今日の天気予報をSlackの#generalに投稿して」
+「最新のGitHub issueをまとめてチームに送って」
+「監視ダッシュボードを確認して異常があれば報告して」
+```
+
+### スケジュールオートメーションの作成
+
+自動的に実行される定期タスクを設定：
+
+```
+「毎朝9時にスタンドアップリマインダーを作成して」
+「毎週月曜の朝にウィークリーレポートをスケジュールして」
+「本番システムの1時間ごとのヘルスチェックを設定して」
+```
+
+### オートメーションの管理
+
+スケジュールされたタスクの表示、更新、削除：
+
+```
+「全てのオートメーションを一覧表示して」
+「デイリーレポートのオートメーションを無効にして」
+「週次同期を9時から10時に変更して」
+```
+
+## 実行モード
+
+`emma_run_task`でタスクを実行する際、異なる実行モードを指定できます：
+
+| モード | 説明 | 最適な用途 |
+|--------|------|-----------|
+| `normal` | 標準実行（デフォルト） | ほとんどのタスク |
+| `deep_thinking` | 複雑なタスク向けの拡張推論 | 複雑な分析、マルチステップタスク |
+| `ask` | 情報収集モード | リサーチ、データ収集 |
+
+## 次のステップ
+
+<CardGroup cols={2}>
+  <Card title="セットアップガイド" icon="wrench" href="/ja/mcp/setup">
+    Cursorでemma MCP Serverを設定
+  </Card>
+  <Card title="ツールリファレンス" icon="book" href="/ja/mcp/tools-reference">
+    全ツールの詳細ドキュメント
+  </Card>
+</CardGroup>
