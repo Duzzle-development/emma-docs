@@ -10,7 +10,7 @@ Official documentation for [emma](https://app.emma.ai) - AI-powered assistant fo
 
 ## About emma
 
-emma is an AI assistant that integrates with your team's tools like Slack, GitHub, Notion, and more to help automate workflows and boost productivity.
+emma is a product designed for ambitious engineering teams to streamline and automate back-office work.
 
 ## Documentation
 
@@ -21,7 +21,6 @@ emma is an AI assistant that integrates with your team's tools like Slack, GitHu
 
 ## Links
 
-- [emma App](https://app.emma.ai)
 - [Documentation](https://docs.duzzle.dev)
 - [GitHub](https://github.com/Duzzle-development/emma-docs)
 - [X](https://x.com/Duzzle_ai)
