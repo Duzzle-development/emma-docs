@@ -4,6 +4,10 @@
   <a href="README.md">English</a> | <a href="README.ja.md">日本語</a>
 </p>
 
+<p align="center">
+  <img src="images/emma-banner.png" alt="emma" width="600">
+</p>
+
 [emma](https://app.emma.ai) の公式ドキュメントです
 
 **公開サイト:** [docs.duzzle.dev](https://docs.duzzle.dev)
