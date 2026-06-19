@@ -80,6 +80,125 @@ Check emma API connection status. This tool takes no parameters.
 
 ---
 
+### emma_session_interact
+
+Interact with an existing emma session. This unified tool allows you to monitor, communicate with, and control emma sessions.
+
+<Info>
+**Best for:** Monitoring task progress, sending follow-up instructions to running tasks, cancelling tasks that are no longer needed, Agent-to-Agent (A2A) communication patterns.
+
+**Not recommended for:** Starting new tasks (use `emma_run_task` instead), checking API health (use `emma_health_check`).
+
+**Optimal workflow:** Start a task with `emma_run_task`, note the `conversation_id`, then use this tool to monitor progress or send additional instructions.
+</Info>
+
+<ParamField path="session_id" type="string" required>
+  The session ID (`conversation_id`) returned from `emma_run_task`. This identifies the session to interact with.
+</ParamField>
+
+<ParamField path="action" type="string" required>
+  The action to perform.
+  
+  | Value | Description |
+  |-------|-------------|
+  | `get_status` | Get detailed session status including current step, progress percentage, active agent, and last message |
+  | `send_message` | Send a follow-up message to provide additional instructions or context |
+  | `cancel` | Cancel the running session |
+</ParamField>
+
+<ParamField path="message" type="string">
+  Message content (required for `send_message` action). Provide additional instructions or context for the running task.
+</ParamField>
+
+**Response Fields:**
+
+| Field | Description |
+|-------|-------------|
+| `status` | Session state (`pending`, `running`, `completed`, `cancelled`, `failed`) |
+| `status_message` | Human-readable description of current state |
+| `task` | Task progress (`task_id`, `current_step`, `total_steps`, `completed_steps`, `plan_summary`) |
+| `current_agent` | Currently executing agent info (`name`, `action`, `step_title`) |
+| `progress` | Progress percentage and elapsed time |
+| `can_send_message` | Whether the session accepts messages |
+| `action_result` | Result of `send_message` or `cancel` action |
+
+<Tabs>
+  <Tab title="Get Status">
+    ```json
+    {
+      "session_id": "conv_abc123",
+      "action": "get_status"
+    }
+    ```
+    
+    **Response:**
+    ```json
+    {
+      "status": "running",
+      "status_message": "Task is in progress",
+      "task": {
+        "task_id": "task_xyz789",
+        "current_step": 2,
+        "total_steps": 5,
+        "completed_steps": 1,
+        "plan_summary": "Gathering data, analyzing results, generating report"
+      },
+      "current_agent": {
+        "name": "DataAnalyzer",
+        "action": "analyzing",
+        "step_title": "Analyzing Q3 sales data"
+      },
+      "progress": {
+        "percentage": 40,
+        "elapsed_time": "00:02:15"
+      },
+      "can_send_message": true
+    }
+    ```
+  </Tab>
+  <Tab title="Send Message">
+    ```json
+    {
+      "session_id": "conv_abc123",
+      "action": "send_message",
+      "message": "Please also include the Q4 data in the report"
+    }
+    ```
+    
+    **Response:**
+    ```json
+    {
+      "status": "running",
+      "action_result": {
+        "success": true,
+        "message": "Message delivered to session"
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="Cancel">
+    ```json
+    {
+      "session_id": "conv_abc123",
+      "action": "cancel"
+    }
+    ```
+    
+    **Response:**
+    ```json
+    {
+      "status": "cancelled",
+      "action_result": {
+        "success": true,
+        "message": "Session has been cancelled"
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
 ## Automation Management
 
 ### emma_create_automation

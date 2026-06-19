@@ -80,6 +80,125 @@ emma API接続状態を確認します。このツールはパラメータを取
 
 ---
 
+### emma_session_interact
+
+既存のemmaセッションと対話します。この統合ツールを使用して、emmaセッションの監視、通信、制御を行うことができます。
+
+<Info>
+**最適な用途:** タスク進捗の監視、実行中のタスクへのフォローアップ指示の送信、不要になったタスクのキャンセル、Agent-to-Agent（A2A）通信パターン。
+
+**推奨されない用途:** 新しいタスクの開始（代わりに`emma_run_task`を使用）、APIヘルスチェック（代わりに`emma_health_check`を使用）。
+
+**最適なワークフロー:** `emma_run_task`でタスクを開始し、`conversation_id`をメモしてから、このツールを使用して進捗を監視したり、追加の指示を送信したりします。
+</Info>
+
+<ParamField path="session_id" type="string" required>
+  `emma_run_task`から返されるセッションID（`conversation_id`）。対話するセッションを識別します。
+</ParamField>
+
+<ParamField path="action" type="string" required>
+  実行するアクション。
+  
+  | 値 | 説明 |
+  |----|------|
+  | `get_status` | 現在のステップ、進捗率、アクティブなエージェント、最後のメッセージを含む詳細なセッションステータスを取得 |
+  | `send_message` | 追加の指示やコンテキストを提供するフォローアップメッセージを送信 |
+  | `cancel` | 実行中のセッションをキャンセル |
+</ParamField>
+
+<ParamField path="message" type="string">
+  メッセージ内容（`send_message`アクションの場合は必須）。実行中のタスクに追加の指示やコンテキストを提供します。
+</ParamField>
+
+**レスポンスフィールド:**
+
+| フィールド | 説明 |
+|-----------|------|
+| `status` | セッション状態（`pending`, `running`, `completed`, `cancelled`, `failed`） |
+| `status_message` | 現在の状態の人間が読める説明 |
+| `task` | タスク進捗（`task_id`, `current_step`, `total_steps`, `completed_steps`, `plan_summary`） |
+| `current_agent` | 現在実行中のエージェント情報（`name`, `action`, `step_title`） |
+| `progress` | 進捗率と経過時間 |
+| `can_send_message` | セッションがメッセージを受け付けるかどうか |
+| `action_result` | `send_message`または`cancel`アクションの結果 |
+
+<Tabs>
+  <Tab title="ステータス取得">
+    ```json
+    {
+      "session_id": "conv_abc123",
+      "action": "get_status"
+    }
+    ```
+    
+    **レスポンス:**
+    ```json
+    {
+      "status": "running",
+      "status_message": "タスクは進行中です",
+      "task": {
+        "task_id": "task_xyz789",
+        "current_step": 2,
+        "total_steps": 5,
+        "completed_steps": 1,
+        "plan_summary": "データ収集、結果分析、レポート生成"
+      },
+      "current_agent": {
+        "name": "DataAnalyzer",
+        "action": "analyzing",
+        "step_title": "Q3売上データを分析中"
+      },
+      "progress": {
+        "percentage": 40,
+        "elapsed_time": "00:02:15"
+      },
+      "can_send_message": true
+    }
+    ```
+  </Tab>
+  <Tab title="メッセージ送信">
+    ```json
+    {
+      "session_id": "conv_abc123",
+      "action": "send_message",
+      "message": "レポートにQ4のデータも含めてください"
+    }
+    ```
+    
+    **レスポンス:**
+    ```json
+    {
+      "status": "running",
+      "action_result": {
+        "success": true,
+        "message": "メッセージがセッションに配信されました"
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="キャンセル">
+    ```json
+    {
+      "session_id": "conv_abc123",
+      "action": "cancel"
+    }
+    ```
+    
+    **レスポンス:**
+    ```json
+    {
+      "status": "cancelled",
+      "action_result": {
+        "success": true,
+        "message": "セッションがキャンセルされました"
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
 ## オートメーション管理
 
 ### emma_create_automation

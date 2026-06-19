@@ -11,6 +11,9 @@ The emma MCP Server provides programmatic access to emma's core capabilities, al
   <Card title="Task Execution" icon="play">
     Run tasks on emma with customizable execution modes
   </Card>
+  <Card title="Session Management" icon="comments">
+    Monitor progress, send follow-up instructions, and control running tasks
+  </Card>
   <Card title="Automation Management" icon="clock">
     Create, update, and manage scheduled automations
   </Card>
@@ -38,7 +41,7 @@ Keep your API key secure. Do not commit it to version control or share it public
 
 ## Available Tools
 
-The emma MCP Server provides 7 tools organized into two categories:
+The emma MCP Server provides 8 tools organized into three categories:
 
 ### Task Execution
 
@@ -46,6 +49,12 @@ The emma MCP Server provides 7 tools organized into two categories:
 |------|-------------|
 | `emma_run_task` | Execute a task on emma with customizable modes |
 | `emma_health_check` | Check emma API connection status |
+
+### Session Management
+
+| Tool | Description |
+|------|-------------|
+| `emma_session_interact` | Monitor, communicate with, and control running sessions |
 
 ### Automation Management
 
@@ -91,6 +100,16 @@ View, update, or delete your scheduled tasks:
 "List all my automations"
 "Disable the daily report automation"
 "Change the weekly sync to run at 10 AM instead of 9 AM"
+```
+
+### Monitor and Control Running Tasks
+
+Track progress and interact with running sessions:
+
+```
+"Check the status of my running task"
+"Send additional instructions to the current session"
+"Cancel the task that's taking too long"
 ```
 
 ## Execution Modes
