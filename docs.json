@@ -49,7 +49,6 @@
               },
               {
                 "group": "Product Guide",
-                "icon": "package",
                 "pages": [
                   "product-guide/overview",
                   "product-guide/automations"
@@ -122,7 +121,6 @@
               },
               {
                 "group": "製品ガイド",
-                "icon": "package",
                 "pages": [
                   "ja/product-guide/overview",
                   "ja/product-guide/automations"
