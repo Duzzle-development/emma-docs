@@ -52,7 +52,7 @@
                 "icon": "package",
                 "pages": [
                   "product-guide/overview",
-                  "product-guide/schedule"
+                  "product-guide/automations"
                 ]
               },
               {
@@ -125,7 +125,7 @@
                 "icon": "package",
                 "pages": [
                   "ja/product-guide/overview",
-                  "ja/product-guide/schedule"
+                  "ja/product-guide/automations"
                 ]
               },
               {
