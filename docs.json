@@ -51,7 +51,8 @@
                 "group": "Product Guide",
                 "pages": [
                   "product-guide/overview",
-                  "product-guide/automations"
+                  "product-guide/automations",
+                  "product-guide/remotegraph"
                 ]
               },
               {
@@ -123,7 +124,8 @@
                 "group": "製品ガイド",
                 "pages": [
                   "ja/product-guide/overview",
-                  "ja/product-guide/automations"
+                  "ja/product-guide/automations",
+                  "ja/product-guide/remotegraph"
                 ]
               },
               {

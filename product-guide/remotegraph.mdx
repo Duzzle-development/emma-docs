@@ -1,0 +1,79 @@
+---
+title: "RemoteGraph"
+description: "Call LangGraph RemoteGraph deployed on LangSmith from emma"
+icon: "share-nodes"
+---
+
+## Overview
+
+RemoteGraph allows you to call LangGraph graphs deployed on LangSmith directly from emma. This enables you to leverage your custom AI workflows and agents within emma's automation capabilities.
+
+<Frame>
+  <img src="/images/remotegraph-overview.png" alt="RemoteGraph" />
+</Frame>
+
+## What is RemoteGraph?
+
+RemoteGraph is a LangGraph feature that allows you to interact with graphs deployed on LangSmith as if they were running locally. By integrating RemoteGraph with emma, you can:
+
+- **Execute custom AI workflows** - Run your LangGraph agents from emma
+- **Leverage LangSmith deployments** - Use graphs deployed on LangSmith infrastructure
+- **Combine with Automations** - Schedule and automate your LangGraph workflows
+
+## Getting Started
+
+<Steps>
+  <Step title="Deploy your graph to LangSmith">
+    First, deploy your LangGraph graph to LangSmith. Refer to the [LangSmith documentation](https://docs.smith.langchain.com/) for deployment instructions.
+  </Step>
+  <Step title="Get your deployment URL">
+    After deployment, obtain your LangSmith deployment URL and API key.
+  </Step>
+  <Step title="Configure in emma">
+    Add your RemoteGraph configuration in emma's settings.
+  </Step>
+  <Step title="Start using">
+    Call your RemoteGraph from emma tasks or automations.
+  </Step>
+</Steps>
+
+## Configuration
+
+To connect your LangSmith deployment to emma, you'll need:
+
+| Parameter | Description |
+|-----------|-------------|
+| **Deployment URL** | Your LangSmith deployment endpoint |
+| **API Key** | LangSmith API key for authentication |
+| **Graph Name** | Name of the deployed graph |
+
+## Use Cases
+
+<CardGroup cols={2}>
+  <Card title="Custom AI Agents" icon="robot">
+    Run your custom LangGraph agents through emma
+  </Card>
+  <Card title="Complex Workflows" icon="diagram-project">
+    Execute multi-step AI workflows with state management
+  </Card>
+  <Card title="Scheduled Execution" icon="clock">
+    Combine with Automations for scheduled graph execution
+  </Card>
+  <Card title="Team Collaboration" icon="users">
+    Share deployed graphs across your team via emma
+  </Card>
+</CardGroup>
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Monitor your deployments">
+    Use LangSmith's monitoring features to track graph execution and performance.
+  </Accordion>
+  <Accordion title="Handle errors gracefully">
+    Implement proper error handling in your graphs for reliable automation.
+  </Accordion>
+  <Accordion title="Optimize for latency">
+    Consider response times when using RemoteGraph in time-sensitive automations.
+  </Accordion>
+</AccordionGroup>

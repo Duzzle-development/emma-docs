@@ -1,0 +1,79 @@
+---
+title: "RemoteGraph"
+description: "LangSmithにデプロイしたLangGraph RemoteGraphをemmaから呼び出す"
+icon: "share-nodes"
+---
+
+## 概要
+
+RemoteGraphを使用すると、LangSmithにデプロイしたLangGraphのグラフをemmaから直接呼び出すことができます。これにより、カスタムAIワークフローやエージェントをemmaの自動化機能と組み合わせて活用できます。
+
+<Frame>
+  <img src="/images/remotegraph-overview.png" alt="RemoteGraph" />
+</Frame>
+
+## RemoteGraphとは？
+
+RemoteGraphはLangGraphの機能で、LangSmithにデプロイされたグラフをローカルで実行しているかのように操作できます。RemoteGraphをemmaと統合することで、以下のことが可能になります：
+
+- **カスタムAIワークフローの実行** - LangGraphエージェントをemmaから実行
+- **LangSmithデプロイメントの活用** - LangSmithインフラにデプロイされたグラフを使用
+- **Automationsとの連携** - LangGraphワークフローをスケジュール・自動化
+
+## はじめ方
+
+<Steps>
+  <Step title="グラフをLangSmithにデプロイ">
+    まず、LangGraphのグラフをLangSmithにデプロイします。デプロイ手順については[LangSmithドキュメント](https://docs.smith.langchain.com/)を参照してください。
+  </Step>
+  <Step title="デプロイメントURLを取得">
+    デプロイ後、LangSmithのデプロイメントURLとAPIキーを取得します。
+  </Step>
+  <Step title="emmaで設定">
+    emmaの設定でRemoteGraph構成を追加します。
+  </Step>
+  <Step title="使用開始">
+    emmaのタスクやAutomationsからRemoteGraphを呼び出します。
+  </Step>
+</Steps>
+
+## 設定
+
+LangSmithデプロイメントをemmaに接続するには、以下が必要です：
+
+| パラメータ | 説明 |
+|-----------|------|
+| **Deployment URL** | LangSmithのデプロイメントエンドポイント |
+| **API Key** | 認証用のLangSmith APIキー |
+| **Graph Name** | デプロイされたグラフの名前 |
+
+## ユースケース
+
+<CardGroup cols={2}>
+  <Card title="カスタムAIエージェント" icon="robot">
+    カスタムLangGraphエージェントをemma経由で実行
+  </Card>
+  <Card title="複雑なワークフロー" icon="diagram-project">
+    状態管理を伴うマルチステップAIワークフローを実行
+  </Card>
+  <Card title="スケジュール実行" icon="clock">
+    Automationsと組み合わせてグラフをスケジュール実行
+  </Card>
+  <Card title="チームコラボレーション" icon="users">
+    デプロイされたグラフをemma経由でチーム全体で共有
+  </Card>
+</CardGroup>
+
+## ベストプラクティス
+
+<AccordionGroup>
+  <Accordion title="デプロイメントを監視する">
+    LangSmithのモニタリング機能を使用して、グラフの実行とパフォーマンスを追跡してください。
+  </Accordion>
+  <Accordion title="エラーを適切に処理する">
+    信頼性の高い自動化のために、グラフに適切なエラーハンドリングを実装してください。
+  </Accordion>
+  <Accordion title="レイテンシを最適化する">
+    時間に敏感な自動化でRemoteGraphを使用する場合は、応答時間を考慮してください。
+  </Accordion>
+</AccordionGroup>
