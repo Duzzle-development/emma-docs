@@ -27,351 +27,275 @@ Connect emma to your Slack workspace for powerful team collaboration.
   </Step>
 </Steps>
 
-## Available Features
+## Available Tools
 
-emma provides **26 tools** for comprehensive Slack integration, organized into 7 categories:
+emma provides **113 tools** for comprehensive Slack integration, organized into 24 categories:
+
+<AccordionGroup>
+  <Accordion title="Messages (7 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_search_messages` | Search the Slack message history using keywords and advanced filters |
+    | `slack_get_channel_history` | Get the history of a specific Slack channel |
+    | `slack_get_thread` | Get all replies in a Slack thread |
+    | `slack_post_message` | Post a message to a Slack channel or direct message |
+    | `slack_reply_to_thread` | Reply to a Slack thread |
+    | `slack_update_message` | Update (edit) an existing message |
+    | `slack_delete_message` | Delete a message from a channel |
+  </Accordion>
+
+  <Accordion title="Channels (3 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_list_channels` | Get the list of available Slack channels |
+    | `slack_get_channel_info` | Get detailed information about a channel |
+    | `slack_get_channel_members` | Get the list of members in a channel |
+  </Accordion>
+
+  <Accordion title="Conversations (12 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_create_channel` | Create a new public or private channel |
+    | `slack_archive_channel` | Archive a channel |
+    | `slack_unarchive_channel` | Unarchive a previously archived channel |
+    | `slack_rename_channel` | Rename a channel |
+    | `slack_set_channel_topic` | Set the topic for a channel |
+    | `slack_set_channel_purpose` | Set the purpose (description) for a channel |
+    | `slack_join_channel` | Join a public channel |
+    | `slack_leave_channel` | Leave a channel |
+    | `slack_invite_to_channel` | Invite users to a channel |
+    | `slack_kick_from_channel` | Remove a user from a channel |
+    | `slack_mark_channel` | Set the read cursor position in a channel |
+    | `slack_get_conversation_replies` | Get all replies in a thread |
+  </Accordion>
+
+  <Accordion title="Files (4 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_get_files_from_channel` | Get a list of files uploaded to a specific channel |
+    | `slack_get_file_info` | Get detailed information about a specific file |
+    | `slack_extract_urls_from_messages` | Extract URLs from messages in a channel |
+    | `slack_upload_file` | Upload a file to Slack |
+  </Accordion>
+
+  <Accordion title="Files Extended (6 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_delete_file` | Delete a file from Slack |
+    | `slack_add_remote_file` | Add a remote file to Slack |
+    | `slack_list_remote_files` | List remote files in Slack |
+    | `slack_share_remote_file` | Share a remote file to one or more channels |
+    | `slack_update_remote_file` | Update a remote file's metadata |
+    | `slack_remove_remote_file` | Remove a remote file from Slack |
+  </Accordion>
+
+  <Accordion title="Users (2 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_list_users` | Get the list of users in the Slack workspace |
+    | `slack_get_user_icon` | Get the Slack icon image URL for a specific user |
+  </Accordion>
+
+  <Accordion title="Users Extended (8 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_get_user_info` | Get detailed information about a user |
+    | `slack_get_user_profile` | Get a user's profile information |
+    | `slack_set_user_profile` | Set the user's profile information |
+    | `slack_lookup_by_email` | Find a user by their email address |
+    | `slack_get_presence` | Get a user's presence status |
+    | `slack_set_presence` | Set the user's presence status |
+    | `slack_list_conversations` | List conversations (channels) a user is a member of |
+    | `slack_get_bot_info` | Get information about a bot user |
+  </Accordion>
+
+  <Accordion title="Direct Messages (4 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_open_dm` | Open or resume a direct message (DM) or multi-person DM |
+    | `slack_close_dm` | Close a direct message or multi-person DM |
+    | `slack_list_dm_channels` | List all direct message channels |
+    | `slack_list_mpim_channels` | List all multi-person direct message channels |
+  </Accordion>
+
+  <Accordion title="Reactions (3 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_add_reaction` | Add a reaction (emoji) to a message |
+    | `slack_remove_reaction` | Remove a reaction from a message |
+    | `slack_get_reactions` | Get all reactions on a message |
+  </Accordion>
+
+  <Accordion title="Pins (3 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_add_pin` | Pin a message to a channel |
+    | `slack_remove_pin` | Remove a pin from a message |
+    | `slack_list_pins` | List all pinned messages in a channel |
+  </Accordion>
+
+  <Accordion title="Stars (3 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_add_star` | Add a star (save for later) to an item |
+    | `slack_remove_star` | Remove a star from an item |
+    | `slack_list_stars` | List starred items for the authenticated user |
+  </Accordion>
+
+  <Accordion title="Bookmarks (4 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_add_bookmark` | Add a bookmark to a channel |
+    | `slack_edit_bookmark` | Edit an existing bookmark |
+    | `slack_list_bookmarks` | List all bookmarks in a channel |
+    | `slack_remove_bookmark` | Remove a bookmark from a channel |
+  </Accordion>
+
+  <Accordion title="Scheduled Messages (3 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_schedule_message` | Schedule a message to be sent at a specific time |
+    | `slack_list_scheduled_messages` | List all scheduled messages |
+    | `slack_delete_scheduled_message` | Delete a scheduled message before it is sent |
+  </Accordion>
+
+  <Accordion title="Reminders (5 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_create_reminder` | Create a reminder for yourself |
+    | `slack_list_reminders` | List all reminders for the authenticated user |
+    | `slack_get_reminder_info` | Get detailed information about a specific reminder |
+    | `slack_delete_reminder` | Delete a reminder |
+    | `slack_complete_reminder` | Mark a reminder as complete |
+  </Accordion>
+
+  <Accordion title="Do Not Disturb (4 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_get_dnd_info` | Get a user's Do Not Disturb status |
+    | `slack_set_dnd_snooze` | Enable Do Not Disturb mode for a specified duration |
+    | `slack_end_dnd` | End the current Do Not Disturb session |
+    | `slack_get_team_dnd` | Get Do Not Disturb status for multiple team members |
+  </Accordion>
+
+  <Accordion title="User Groups (7 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_list_usergroups` | List all User Groups in the workspace |
+    | `slack_create_usergroup` | Create a new User Group |
+    | `slack_update_usergroup` | Update an existing User Group's properties |
+    | `slack_disable_usergroup` | Disable a User Group |
+    | `slack_enable_usergroup` | Re-enable a disabled User Group |
+    | `slack_list_usergroup_users` | List all users in a User Group |
+    | `slack_update_usergroup_users` | Update the members of a User Group |
+  </Accordion>
+
+  <Accordion title="Team (4 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_get_team_info` | Get information about a Slack workspace |
+    | `slack_get_team_profile` | Get the team's profile field definitions |
+    | `slack_get_access_logs` | Get workspace access logs (admin only) |
+    | `slack_get_billable_info` | Get billable user information (admin only) |
+  </Accordion>
+
+  <Accordion title="Emoji (3 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_list_emoji` | List all custom emoji in the workspace |
+    | `slack_get_emoji_url` | Get the URL for a specific custom emoji |
+    | `slack_search_emoji` | Search for custom emoji by name |
+  </Accordion>
+
+  <Accordion title="Auth (3 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_auth_test` | Test authentication and get current identity information |
+    | `slack_auth_revoke` | Revoke the current authentication token |
+    | `slack_list_authorized_teams` | List teams that have authorized the app |
+  </Accordion>
+
+  <Accordion title="Calls (6 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_start_call` | Start/register a new call in Slack |
+    | `slack_end_call` | End an active call |
+    | `slack_get_call_info` | Get information about a call |
+    | `slack_update_call` | Update call information |
+    | `slack_add_call_participants` | Add participants to an active call |
+    | `slack_remove_call_participants` | Remove participants from an active call |
+  </Accordion>
+
+  <Accordion title="Canvases (6 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_create_canvas` | Create a new Canvas |
+    | `slack_edit_canvas` | Edit an existing Canvas |
+    | `slack_delete_canvas` | Delete a Canvas |
+    | `slack_set_canvas_access` | Set access permissions for a Canvas |
+    | `slack_delete_canvas_access` | Remove access permissions from a Canvas |
+    | `slack_lookup_canvas_sections` | Look up sections in a Canvas |
+  </Accordion>
+
+  <Accordion title="Lists (9 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_create_list` | Create a new List |
+    | `slack_update_list` | Update a List's properties |
+    | `slack_set_list_access` | Set access permissions for a List |
+    | `slack_delete_list_access` | Remove access permissions from a List |
+    | `slack_create_list_item` | Create a new item in a List |
+    | `slack_update_list_item` | Update an item in a List |
+    | `slack_delete_list_item` | Delete an item from a List |
+    | `slack_get_list_item` | Get information about a specific List item |
+    | `slack_list_list_items` | List all items in a List |
+  </Accordion>
+
+  <Accordion title="Chat Extended (6 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_post_ephemeral` | Send an ephemeral message visible only to a specific user |
+    | `slack_get_permalink` | Get the permanent URL for a specific message |
+    | `slack_unfurl_url` | Customize URL previews in a message |
+    | `slack_me_message` | Send a /me style message to a channel |
+    | `slack_search_all` | Search for both messages and files in Slack |
+    | `slack_search_files` | Search for files in Slack |
+  </Accordion>
+
+  <Accordion title="Admin - Enterprise Grid (10 tools)">
+    | Tool | Description |
+    |------|-------------|
+    | `slack_admin_list_users` | List users in a workspace |
+    | `slack_admin_invite_user` | Invite a user to a workspace |
+    | `slack_admin_remove_user` | Remove a user from a workspace |
+    | `slack_admin_set_admin` | Grant admin privileges to a user |
+    | `slack_admin_set_regular` | Demote a user to regular member |
+    | `slack_admin_list_channels` | Search channels in Enterprise organization |
+    | `slack_admin_archive_channel` | Archive a channel |
+    | `slack_admin_unarchive_channel` | Unarchive a channel |
+    | `slack_admin_list_teams` | List teams in Enterprise organization |
+    | `slack_admin_get_team_info` | Get team settings information |
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Common Use Cases
 
 <CardGroup cols={2}>
-  <Card title="Messages" icon="message">
-    Search, read, post, reply, update, and delete messages
+  <Card title="Daily Standups" icon="sun">
+    Schedule automated standup reminders and collect team updates.
   </Card>
-  <Card title="Channels" icon="hashtag">
-    List channels, get channel info, and view members
+  <Card title="Report Distribution" icon="chart-bar">
+    Generate reports and automatically share them to relevant channels.
   </Card>
-  <Card title="Files" icon="file">
-    Upload files, list files, and extract URLs from messages
+  <Card title="Knowledge Search" icon="magnifying-glass">
+    Search past conversations to find decisions, links, and information.
   </Card>
-  <Card title="Users" icon="users">
-    List workspace users and get user profile icons
-  </Card>
-  <Card title="Reactions" icon="face-smile">
-    Add, remove, and view emoji reactions on messages
-  </Card>
-  <Card title="Pins" icon="thumbtack">
-    Pin and unpin important messages
-  </Card>
-  <Card title="Scheduled Messages" icon="clock">
-    Schedule messages for future delivery
+  <Card title="Task Tracking" icon="check">
+    Use reactions to track task completion and gather feedback.
   </Card>
 </CardGroup>
-
----
-
-## Messages
-
-### Search Messages
-
-Search through your Slack message history using keywords and advanced filters.
-
-**Example prompts:**
-- "Search Slack for messages about the Q4 budget"
-- "Find messages from @john about the API project"
-- "Search for messages with links shared in #engineering last week"
-
-**Advanced search operators:**
-
-| Operator | Description | Example |
-|----------|-------------|---------|
-| `from:@username` | Messages from a specific user | `from:@john` |
-| `to:@username` | Messages mentioning a user | `to:@mary` |
-| `in:#channel` | Search within a channel | `in:#general` |
-| `after:YYYY-MM-DD` | After a specific date | `after:2024-01-01` |
-| `before:YYYY-MM-DD` | Before a specific date | `before:2024-12-31` |
-| `on:YYYY-MM-DD` | On a specific date | `on:2024-10-25` |
-| `has:link` | Contains a link | - |
-| `has:reaction` | Has emoji reactions | - |
-| `is:pinned` | Pinned messages | - |
-
-<Note>
-Message search requires OAuth authentication with a User Token. Free Slack plans only allow searching the last 90 days of messages.
-</Note>
-
-### Get Channel History
-
-Retrieve the message history from a specific channel.
-
-**Example prompts:**
-- "Show me the last 50 messages in #general"
-- "Get the conversation history from #engineering for the past week"
-- "What was discussed in #product-updates yesterday?"
-
-### Get Thread Replies
-
-Get all replies in a specific thread to see the full conversation context.
-
-**Example prompts:**
-- "Show me all replies in this thread"
-- "Get the full thread discussion about the deployment"
-
-### Post Message
-
-Send a message to a channel or direct message. Supports Markdown formatting and @mentions.
-
-**Example prompts:**
-- "Post a message to #general saying the deployment is complete"
-- "Send a weekly report summary to #team-updates"
-- "DM @john about the meeting tomorrow"
-
-**Supported formatting:**
-- `*bold*` or `**bold**`
-- `_italic_` or `~strikethrough~`
-- `` `code` `` and ` ```code block``` `
-- `> quote`
-- Lists (numbered and bulleted)
-- @mentions (automatically converted to user IDs)
-
-### Reply to Thread
-
-Reply to an existing thread to keep conversations organized.
-
-**Example prompts:**
-- "Reply to that thread with the updated numbers"
-- "Add a comment to the deployment thread"
-
-### Update Message
-
-Edit a previously posted message to fix typos or update information.
-
-**Example prompts:**
-- "Update my last message to fix the typo"
-- "Edit the announcement to include the new date"
-
-<Warning>
-You can only edit messages that were posted by emma.
-</Warning>
-
-### Delete Message
-
-Permanently delete a message from a channel.
-
-**Example prompts:**
-- "Delete my last message in #general"
-- "Remove the duplicate message I posted"
-
-<Warning>
-This action is irreversible. You can only delete messages posted by emma.
-</Warning>
-
----
-
-## Channels
-
-### List Channels
-
-Get a list of all available channels in your workspace, including their IDs, member counts, and whether emma has joined them.
-
-**Example prompts:**
-- "Show me all Slack channels"
-- "List the channels emma has access to"
-- "What channels are available in our workspace?"
-
-<Note>
-Always use this tool first before other Slack operations to get the channel ID mapping.
-</Note>
-
-### Get Channel Info
-
-Get detailed information about a specific channel including topic, purpose, creation date, and member count.
-
-**Example prompts:**
-- "Tell me about the #engineering channel"
-- "When was #general created?"
-- "How many members are in #product?"
-
-### Get Channel Members
-
-List all members in a specific channel.
-
-**Example prompts:**
-- "Who is in #engineering?"
-- "List all members of #general"
-- "Check if @john is in #product"
-
----
-
-## Files
-
-### Get Files from Channel
-
-List files uploaded to a specific channel within a time range.
-
-**Example prompts:**
-- "Show me files shared in #design this month"
-- "List all PDFs uploaded to #documents"
-- "What images were shared in #marketing last week?"
-
-### Get File Info
-
-Get detailed information about a specific file including size, type, and download URL.
-
-**Example prompts:**
-- "Get details about this file"
-- "What's the size of the uploaded presentation?"
-
-### Extract URLs from Messages
-
-Extract all URLs shared in a channel's messages.
-
-**Example prompts:**
-- "Find all links shared in #resources this week"
-- "Extract URLs from #engineering messages"
-- "What websites were shared in #general?"
-
-### Upload File
-
-Upload a file to one or more Slack channels. Supports local files, URLs, and sandbox files.
-
-**Example prompts:**
-- "Upload this report to #team-updates"
-- "Share the presentation in #sales and #marketing"
-- "Post this image to #design with a comment"
-
-**Supported sources:**
-- HTTP/HTTPS URLs (recommended for generated files)
-- Local file paths
-- Sandbox file paths
-
----
-
-## Users
-
-### List Users
-
-Get a list of all active users in your Slack workspace.
-
-**Example prompts:**
-- "Show me all users in our Slack"
-- "List team members"
-- "Who's in our workspace?"
-
-**Information returned:**
-- User ID
-- Username
-- Display name
-- Real name
-- Email (requires `users:read.email` scope)
-- Admin/Owner status
-- Timezone
-
-### Get User Icon
-
-Get the profile icon URL for a specific user in various sizes.
-
-**Example prompts:**
-- "Get @john's profile picture"
-- "I need the avatar for the user U01234ABCDE"
-
-**Available sizes:** 24x24, 32x32, 48x48, 72x72, 192x192, 512x512 (original)
-
----
-
-## Reactions
-
-### Add Reaction
-
-Add an emoji reaction to a message.
-
-**Example prompts:**
-- "Add a thumbs up to that message"
-- "React with :white_check_mark: to mark it as done"
-- "Add the :eyes: emoji to show I'm looking into it"
-
-**Common emoji names:**
-
-| Emoji | Name | Use Case |
-|-------|------|----------|
-| 👍 | `thumbsup` | Approval |
-| 👎 | `thumbsdown` | Disapproval |
-| ✅ | `white_check_mark` | Done/Complete |
-| ❌ | `x` | Rejected |
-| 👀 | `eyes` | Looking into it |
-| 🚀 | `rocket` | Launch/Ship |
-| 🎉 | `tada` | Celebration |
-| ❤️ | `heart` | Appreciation |
-| 🔥 | `fire` | Hot/Trending |
-| 💯 | `100` | Perfect |
-
-### Remove Reaction
-
-Remove an emoji reaction from a message.
-
-**Example prompts:**
-- "Remove my thumbs up from that message"
-- "Take off the :eyes: reaction"
-
-### Get Reactions
-
-View all reactions on a specific message.
-
-**Example prompts:**
-- "What reactions are on that announcement?"
-- "How many people gave a thumbs up?"
-- "Show me the feedback on the proposal"
-
----
-
-## Pins
-
-### Pin Message
-
-Pin an important message to a channel for easy access.
-
-**Example prompts:**
-- "Pin that announcement to #general"
-- "Pin the meeting notes"
-
-### Unpin Message
-
-Remove a pin from a message.
-
-**Example prompts:**
-- "Unpin the old announcement"
-- "Remove the pin from that message"
-
-### List Pinned Messages
-
-View all pinned messages in a channel.
-
-**Example prompts:**
-- "Show me all pinned messages in #engineering"
-- "What's pinned in #general?"
-
----
-
-## Scheduled Messages
-
-### Schedule Message
-
-Schedule a message to be sent at a specific future time.
-
-**Example prompts:**
-- "Schedule a reminder for tomorrow at 9 AM in #team"
-- "Send a message to #general at 2024-12-25T10:00:00"
-- "Post the weekly update every Monday at 9 AM"
-
-**Time formats:**
-- Unix timestamp: `1704067200`
-- ISO format: `2024-01-01T10:00:00`
-
-<Note>
-Scheduled time must be at least 1 minute in the future and no more than 120 days ahead.
-</Note>
-
-### List Scheduled Messages
-
-View all pending scheduled messages.
-
-**Example prompts:**
-- "Show me all scheduled messages"
-- "What messages are scheduled for #announcements?"
-
-### Delete Scheduled Message
-
-Cancel a scheduled message before it's sent.
-
-**Example prompts:**
-- "Cancel the scheduled message for tomorrow"
-- "Delete the pending announcement"
 
 ---
 
@@ -404,22 +328,3 @@ Cancel a scheduled message before it's sent.
     - In a valid format (Unix timestamp or ISO format)
   </Accordion>
 </AccordionGroup>
-
----
-
-## Use Cases
-
-<CardGroup cols={2}>
-  <Card title="Daily Standups" icon="sun">
-    Schedule automated standup reminders and collect team updates.
-  </Card>
-  <Card title="Report Distribution" icon="chart-bar">
-    Generate reports and automatically share them to relevant channels.
-  </Card>
-  <Card title="Knowledge Search" icon="magnifying-glass">
-    Search past conversations to find decisions, links, and information.
-  </Card>
-  <Card title="Task Tracking" icon="check">
-    Use reactions to track task completion and gather feedback.
-  </Card>
-</CardGroup>
